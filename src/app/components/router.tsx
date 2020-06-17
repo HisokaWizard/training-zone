@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { GeneralComponent } from './general';
 import { StartPage } from './startPage';
 
 interface State {
+}
+
+class TestToSee extends React.Component<{}, {}> {
+	render() {
+		return <div>Hello world!</div>;
+	}
 }
 
 export class RouterComponent extends React.Component<{}, State> {
@@ -20,7 +25,11 @@ export class RouterComponent extends React.Component<{}, State> {
 		return (
 			<Router>
 				<Route exact path={'/'} component={StartPage} />
-				<Route path={'/counting'} component={GeneralComponent} />
+				<Route path={'/algorithms/sort'} component={TestToSee} />
+				<Route path={'/algorithms/binary-search'} component={TestToSee} />
+				<Route path={'/algorithms/search'} component={TestToSee} />
+				<Route path={'/algorithms/graph'} component={TestToSee} />
+				<Route path={'/algorithms/filter'} component={TestToSee} />
 			</Router>
 		);
 	}
