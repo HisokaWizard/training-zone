@@ -1,0 +1,302 @@
+.app-title {
+    color: #fff;
+    display: flex;
+    align-self: center;
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+.general-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #f4f9fd;
+}
+
+.general-title {
+    margin: 0 0 1rem 0;
+}
+
+.scheme{
+    display: flex;
+    flex-direction: row;
+}
+.block-of-scheme {
+    display: flex;
+    flex-direction: column;
+    border: 0.2rem dotted black;
+    margin: 1rem 0 1rem 2rem;
+    padding: 1rem;
+}
+
+/* Radio button */
+.radio {
+    display: flex;
+    position: relative;
+    margin-left: 3rem;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.radio input {
+    display: none;
+}
+
+.radio-mark {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0.3rem;
+    left: 0;
+    height: 1rem;
+    width: 1rem;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 0.1rem solid lightgray;
+}
+
+.radio:hover input ~ .radio-mark {
+    background-color: #ccc;
+}
+
+.radio input:checked ~ .radio-mark {
+    background-color: #2196F3;
+}
+
+/* Templates */
+.label-template, .input-template, .select-template {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 0.3rem 0 1rem;
+    position: relative;
+}
+
+.input-with-clear-button {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    position: relative;
+}
+
+.input-label {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.3rem 0 0.5rem;
+}
+
+.select-input, .text-input, .readonly-text {
+    padding: 0.3rem 0.7rem;
+    font-size: 1.1rem;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #a1a1a1;
+    background-color: #ffffff;
+    border-radius: 0.2rem 0.2rem 0 0;
+    width: 100%;
+}
+
+.input-clear-button {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.2rem;
+    background: white;
+    width: 24px;
+    height: 24px;
+    opacity: 0.5;
+    border: none;
+    outline: none;
+}
+
+/* Accordion style */
+.accordion-toggle {
+    display: flex;
+    justify-content: space-between;
+}
+.toggle-after-select {
+    background-color: #7eb7bd !important;
+}
+
+/* Table hacking */
+.table-result {
+    margin: 1rem 0;
+}
+
+.left-title-column {
+    border-right: none !important;
+}
+
+.right-title-column {
+    border-left: none !important;
+}
+
+/* Title of the counting */
+.title-container {
+    display: flex;
+    padding: 0.5rem 1rem 0.5rem 3rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.count-title {
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.input-data-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Control buttons panel */
+.ctrl-buttons-panel {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+/* Device tabs */
+.device-tabs-container .nav.nav-tabs {
+    display: flex;
+    padding-top: 1rem;
+    background-color: #ededed;
+}
+.device-tabs-container .nav.nav-tabs a.nav-item.nav-link {
+    display: flex;
+    flex: 1;
+}
+.device-tabs-container .nav-tabs .nav-link:focus,
+.device-tabs-container .nav-tabs .nav-link:hover {
+    border-color: transparent;
+}
+.device-tabs-container .nav.nav-tabs a.nav-item.nav-link {
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+}
+
+/* ontodia container */
+.ontodia-container {
+    width: 100%;
+    height: 100vh;
+    border-top: 1px solid #b3b3b3;
+    border-bottom: 1px solid #b3b3b3;
+}
+
+/* Accordion button */
+.accordion .card {
+    margin-bottom: 0.3rem;
+}
+.accordion .card button{
+    padding: 0.5rem;
+    background-color: #d7e9eb;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.accordion .card .card-body {
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    padding: 1.25rem 0;
+}
+
+/* table in the result */
+.table {
+    background-color: white;
+}
+.left-table-column {
+    width: 50%;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+.right-table-column {
+    width: 50%;
+    text-align: center;
+    font-size: 1.1rem;
+}
+.table-result-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* control-button for data manipulate in the each device */
+.bottom-btn-bar {
+    display: flex;
+    justify-content: space-between;
+}
+.space-between-text-image {
+    margin-right: 0.5rem;
+}
+.not-active-btn {
+    cursor: not-allowed;
+}
+
+.base-image {
+    width: 48px;
+    height: 48px;
+    background-image: url(../images/hand-gesture.svg);
+    background-size: cover;
+    margin-right: 1rem;
+}
+
+.title-navbar {
+    background-size: cover;
+    background-image: url(../images/header-counting.jpg);
+    background-repeat: no-repeat;
+    max-height: 6rem;
+    padding: 0;
+}
+
+.link-to-start {
+    display: flex;
+    align-self: center;
+    padding-left: 2rem;
+}
+
+.device-count-toolbar .btn.btn-primary,
+.modal-footer .btn.btn-primary,
+.ctrl-buttons-panel .btn.btn-primary,
+.bottom-btn-bar .btn.btn-primary,
+.btn.btn-primary.general-title,
+.ctrl-buttons-panel .btn.btn-primary:hover,
+.device-count-toolbar .btn.btn-primary:hover,
+.bottom-btn-bar .btn.btn-primary:hover,
+.modal-footer .btn.btn-primary:hover,
+.btn.btn-primary.general-title:hover,
+.ctrl-buttons-panel .btn.btn-primary:focus,
+.device-count-toolbar .btn.btn-primary:focus,
+.bottom-btn-bar .btn.btn-primary:focus,
+.modal-footer .btn.btn-primary:focus,
+.btn.btn-primary.general-title:focus {
+    background-color: #3e638a;
+    border: 2px solid #1f4063;
+}
+.ctrl-buttons-panel .btn.btn-primary:disabled,
+.device-count-toolbar .btn.btn-primary:disabled,
+.bottom-btn-bar .btn.btn-primary:disabled {
+    opacity: 1;
+    background-color: #7ba4cd;
+    border: 2px solid #1f4063;
+}
+
+.ctrl-buttons-panel .btn.btn-danger,
+.bottom-btn-bar .btn.btn-danger,
+.ctrl-buttons-panel .btn.btn-danger:hover,
+.bottom-btn-bar .btn.btn-danger:hover,
+.ctrl-buttons-panel .btn.btn-danger:focus,
+.bottom-btn-bar .btn.btn-danger:focus {
+    background-color: #c13f63;
+    border: none;
+    color: white;
+}
+
+.merge-result.btn.btn-success,
+.merge-result.btn.btn-success:hover,
+.merge-result.btn.btn-success:focus {
+    background-color: #32aca1;
+    border: none;
+}

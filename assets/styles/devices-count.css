@@ -1,0 +1,19 @@
+.device-container {
+    display: flex;
+}
+
+.device-result, .device-input
+ {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1.5rem 3rem;
+}
+
+.device-input {
+    background-color: #ededed;
+}
+
+.device-result {
+    background-color: #bed6d9;
+}

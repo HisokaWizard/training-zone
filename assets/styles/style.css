@@ -1,0 +1,11 @@
+@import './devices-count.css';
+@import './start-page.css';
+@import './general.css';
+
+html {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
+
+body {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
+}
