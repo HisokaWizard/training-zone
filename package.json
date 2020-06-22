@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "env NODE_ENV=development npm run build && node server.js"
+    "start": "env NODE_ENV=development npm run build && node server.js",
+    "server": "node backend.js"
   },
+  "proxy": "http://localhost:7008",
   "keywords": [],
   "author": "",
   "license": "ISC",

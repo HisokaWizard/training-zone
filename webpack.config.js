@@ -2,38 +2,19 @@ const path = require('path'),
     webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production';
-const PATH = {
-    src: path.resolve(__dirname, 'src'),
-    dist: path.resolve(__dirname, 'dist'),
-}
 module.exports = {
-    mode: mode,
     entry: {
-        app: [PATH.src + '/app.tsx', 'webpack-hot-middleware/client']
+        app: ['./src/app.tsx', 'webpack-hot-middleware/client'],
+        vendor: ['react', 'react-dom']
     },
     output: {
-        path: PATH.dist,
-        filename: '[name].[hash].js',
-        chunkFilename: '[name].[hash].js',
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'js/[name].bundle.js',
         publicPath: '/',
     },
-    devtool: mode === 'development' ? 'eval-source-map' : 'none',
+    devtool: 'inline-source-map',
     resolve: {
         extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
-    },
-    optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            cacheGroups: {
-                vendor: {
-                    name: 'vendors',
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: 'all',
-                    enforce: true,
-                }
-            }
-        }
     },
     module: {
         rules: [

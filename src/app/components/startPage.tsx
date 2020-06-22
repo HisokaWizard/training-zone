@@ -12,9 +12,12 @@ export class StartPage extends React.Component<{}, {}> {
 					<Dropdown.Menu>
 						<Dropdown.Item><Link to='/algorithms/sort'>Sorting</Link></Dropdown.Item>
 						<Dropdown.Item><Link to='/algorithms/binary-search'>Binary Search</Link></Dropdown.Item>
-						<Dropdown.Item><Link to='/algorithms/search'>Search</Link></Dropdown.Item>
-						<Dropdown.Item><Link to='/algorithms/graph'>Graph</Link></Dropdown.Item>
-						<Dropdown.Item><Link to='/algorithms/filter'>Filter</Link></Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
+				<Dropdown>
+					<Dropdown.Toggle variant='primary' id='dropdown-basic'>Data Structure</Dropdown.Toggle>
+					<Dropdown.Menu>
+						<Dropdown.Item><Link to='/data/structure/list'>Lists</Link></Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 			</div>
