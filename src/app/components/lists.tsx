@@ -12,20 +12,34 @@ interface State {
 	data: any;
 }
 
+interface IPerson {
+	name: string;
+	age: number;
+	profession: string;
+}
+
+class Person {
+	person: IPerson;
+
+	constructor(name: string, age: number, profession: string) {
+		this.person = {name, age, profession};
+	}
+}
+
 export class ListStructure extends React.Component<{}, State> {
 	constructor(props: {}) {
 		super(props);
 		this.state = {
 			data: undefined,
 		};
-	}
 
-	componentDidMount() {
-		this.initComponent();
+		this.initComponent = this.initComponent.bind(this);
 	}
 
 	async initComponent() {
-
+		const person = new Person('Petr', 27, 'software-developer');
+		const getPerson = getPersonData.bind(person);
+		getPerson();
 		const response = await fetch('http://localhost:7008/somedata', {
 			method: 'GET',
 			credentials: 'same-origin',
@@ -37,15 +51,13 @@ export class ListStructure extends React.Component<{}, State> {
 
 	render() {
 		const { data } = this.state;
-		if (!data) {
-			return <div>No data, please wait...</div>;
-		}
 		return (
 			<div>
+				<button onClick={this.initComponent}>Click to get data</button>
 				<div>Person 1:</div>
-				<div>Name: {data[0].name}</div>
+				<div>Name: {data ? data[0].name : null}</div>
 				<div>Person 2:</div>
-				<div>Name: {data[1].name}</div>
+				<div>Name: {data ? data[1].name : null}</div>
 			</div>
 		);
 	}
@@ -80,3 +92,9 @@ class Stack<T> {
 	}
 }
 
+function getPersonData() {
+	if (!this.person) {
+		return;
+	}
+	alert(`Name: ${this.person.name}, Age: ${this.person.age}, Profession: ${this.person.profession}`);
+}
