@@ -4,6 +4,7 @@ import { StartPage } from './startPage';
 import { BinarySearch } from './binary-search';
 import { AllSort } from './sort';
 import { ListStructure } from './lists';
+import { GraphStructure } from './graph';
 
 interface State {
 }
@@ -31,6 +32,7 @@ export class RouterComponent extends React.Component<{}, State> {
 				<Route path={'/algorithms/sort'} component={AllSort} />
 				<Route path={'/algorithms/binary-search'} component={BinarySearch} />
 				<Route path={'/data/structure/list'} component={ListStructure} />
+				<Route path={'/data/structure/graph'} component={GraphStructure} />
 			</Router>
 		);
 	}

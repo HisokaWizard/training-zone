@@ -18,6 +18,7 @@ export class StartPage extends React.Component<{}, {}> {
 					<Dropdown.Toggle variant='primary' id='dropdown-basic'>Data Structure</Dropdown.Toggle>
 					<Dropdown.Menu>
 						<Dropdown.Item><Link to='/data/structure/list'>Lists</Link></Dropdown.Item>
+						<Dropdown.Item><Link to='/data/structure/graph'>Graphs</Link></Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 			</div>
