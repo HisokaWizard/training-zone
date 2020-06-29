@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { StartPage } from './startPage';
 import { generateArray, quickSort } from './sort';
-import { sum } from 'lodash';
+const {pow} = require('./utils');
 
 interface BoxColumn {
 	name: string;
@@ -37,6 +37,8 @@ export class ListStructure extends React.Component<{}, State> {
 	}
 
 	async initComponent() {
+		const result = pow(6, 3);
+		console.log(result);
 		const person = new Person('Petr', 27, 'software-developer');
 		const getPerson = getPersonData.bind(person);
 		getPerson();
