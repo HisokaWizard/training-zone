@@ -5,11 +5,14 @@ const Pow = require('../src/app/components/utils');
 describe('Pow', function () {
 
     function makeTest(x) {
-        let expected = x * x * x;
-        const v = Pow.pow(2,2);
-        console.log(v);
-        it(`${x} в степени 3 будет ${expected}`, function () {
-            assert.equal(Pow.pow(x, 3), expected);
+        let expected1 = x * x * x;
+        let expected2 = Math.sqrt(x);
+        const powItem = new Pow();
+        it(`${x} в степени 3 будет ${expected1}`, function () {
+            assert.equal(powItem.increaseVal(x, 3), expected1);
+        });
+        it(`корень из ${x} будет ${expected2}`, function () {
+            assert.equal(powItem.sqrt(x), expected2);
         });
     }
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'test/**/test.js' && eslint test lib",
+    "test": "mocha 'test/**/test.js'",
     "build": "webpack",
     "start": "env NODE_ENV=development npm run build && node server.js",
     "server": "node backend.js"
