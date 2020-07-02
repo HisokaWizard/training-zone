@@ -2,7 +2,8 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { StartPage } from './startPage';
 import { generateArray, quickSort } from './sort';
-const {pow} = require('./utils');
+import { goCar } from './strategy.pattern';
+import { goObservers } from './observable.pattern';
 
 interface BoxColumn {
 	name: string;
@@ -34,11 +35,11 @@ export class ListStructure extends React.Component<{}, State> {
 		};
 
 		this.initComponent = this.initComponent.bind(this);
+		// goCar();
+		goObservers();
 	}
 
 	async initComponent() {
-		const result = pow(6, 3);
-		console.log(result);
 		const person = new Person('Petr', 27, 'software-developer');
 		const getPerson = getPersonData.bind(person);
 		getPerson();
