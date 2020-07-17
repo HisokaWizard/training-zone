@@ -18,4 +18,29 @@ for (var i = 0; i < 5; i++) {
   })()
 }
 
-array2[3]() // 3 т к корректный scope 
+array2[3](); // 3 т к корректный scope 
+
+// Пути создания IIFE
+(function() {
+  console.log("Скобки вокруг функции");
+})();
+
+(function() {
+  console.log("Скобки вокруг всего");
+}());
+
+!function() {
+  console.log("Выражение начинается с логического оператора NOT");
+}();
+
++function() {
+  console.log("Выражение начинается с унарного плюса");
+}();
+
+// Try case with Immediate Invoked FE
+(function() {
+  var tt = 0;
+  console.log(this); // globalThis for Node or window for browser
+  console.log(this.tt); // undefined т к переменная не в глобальной области видимости
+  console.log(tt); // 0
+})()
