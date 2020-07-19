@@ -16,7 +16,7 @@ class Beverage  { // напиток
 
 // Класс декоратор для дополнений
 class CondimentDecorator extends Beverage { // Condiment - приправа
-	getDescription(): string { return this.description; }
+	// getDescription(): string { return this.description; }
 }
 
 // Экземпляры класса Beverage

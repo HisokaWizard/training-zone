@@ -37,3 +37,26 @@
   border: 1px solid black;
 }
 
+#thumbs {
+  display: flex;
+  margin: 0;
+  padding: 10px 0 0 0;
+}
+
+#thumbs li {
+  border: 1px solid grey;
+  width: 100px;
+  height: 100px;
+  list-style: none;
+  margin-right: 5px;
+}
+
+#thumbs li a img {
+  width: 100px;
+  height: 100px;
+}
+
+#largeImg {
+  width: 300px;
+  height: 300px;
+}

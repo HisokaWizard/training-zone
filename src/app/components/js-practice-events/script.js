@@ -203,3 +203,39 @@ function onwEventTry() {
 }
 
 onwEventTry();
+
+function promptToLink() {
+  const links = document.querySelectorAll('[href]');
+  links.forEach(link => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      if(confirm(`Are you sure that you want to go to this link: ${event.target.innerText}?`)) {
+        window.location.href = link.getAttribute('href');
+      }
+    })
+  })
+}
+
+// promptToLink();
+
+function changeImagesByClick() {
+  const imgsList = document.getElementById('thumbs');
+  const links = imgsList.getElementsByTagName('a');
+  const imgs = imgsList.getElementsByTagName('img');
+  const bigImage = document.getElementById('largeImg');
+  Array.from(links).forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopPropagation();
+    });
+  });
+  Array.from(imgs).forEach(img => {
+    img.addEventListener('click', (event) => {
+      event.preventDefault();
+      const imgLink = event.target.getAttribute('src');
+      bigImage.setAttribute('src', imgLink);
+    });
+  });
+}
+
+changeImagesByClick();
