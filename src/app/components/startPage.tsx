@@ -21,6 +21,12 @@ export class StartPage extends React.Component<{}, {}> {
 						<Dropdown.Item><Link to='/data/structure/graph'>Graphs</Link></Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
+				<Dropdown>
+					<Dropdown.Toggle variant='danger' id='dropdown-basic'>Little testing application</Dropdown.Toggle>
+					<Dropdown.Menu>
+						<Dropdown.Item><Link to='/blog'>Blog Imitation</Link></Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
 			</div>
 		);
 	}
