@@ -1,58 +1,109 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { changeCounter, changeText, updatePosts } from './blog-data-store/actions';
-import { BlogState } from './blog-data-store/reducer';
-import { divide } from 'lodash';
+import { bindActionCreators } from 'redux';
+import { changeText, updatePosts } from './blog-data-store/actions';
+import { BlogState, Post } from './blog-data-store/reducer';
 
 interface Props {
-	someState: BlogState;
+	blogState: BlogState;
+	changeText(text: string): void;
+	updatePosts(posts: Post[]): void;
 }
 
-class BlogImitationInner extends React.Component<Props, {}> {
+const names: {name: string; id: number}[] = [
+	{name: 'Gregory', id: 1},
+	{name: 'John', id: 2},
+	{name: 'Rachel', id: 3},
+	{name: 'Trisha', id: 4},
+	{name: 'Lory', id: 5},
+	{name: 'Trevor', id: 6},
+	{name: 'Tiffany', id: 7},
+	{name: 'Lucy', id: 8},
+	{name: 'Morgan', id: 9},
+	{name: 'Chuck', id: 10}
+];
+
+class BlogImitation extends React.Component<Props, {}> {
+	private interval: NodeJS.Timeout;
+	constructor(props: Props) {
+		super(props);
+	}
+
 	componentDidMount() {
+		this.interval = setInterval(() => {
+			this.getRandomPosts();
+		}, 1000);
 	}
 
-	increment = () => {
-		(this.props as any).dispatch(changeCounter(1));
+	getRandomPosts = () => {
+		const {updatePosts} = this.props;
+		const url = 'https://jsonplaceholder.typicode.com/posts';
+		fetch(url, {
+			method: 'GET',
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8'
+			}
+		})
+		.then(response => {
+			return response.json();
+		})
+		.then((resultObject: any[]) => {
+			const newPosts: Post[] = [];
+			const random = Math.round(Math.random() * 99);
+			const author = names.find(name => resultObject[random].userId === name.id);
+			newPosts.push({author: author.name, text: resultObject[random].body});
+			updatePosts(newPosts);
+		})
+		.catch(error => console.error(error));
 	}
 
-	decrement = () => {
-		(this.props as any).dispatch(changeCounter(-1));
+	componentWillMount() {
+		clearInterval(this.interval);
 	}
 
 	send = () => {
-		(this.props as any).dispatch(updatePosts(this.props.someState.text));
+		const {blogState, updatePosts} = this.props;
+		const post: Post = {
+			author: 'Me',
+			text: blogState.text
+		};
+		updatePosts([post]);
 	}
 
 	keepPost = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+		const {changeText} = this.props;
 		const text = event.target.value;
 		if (!text) {
 			return;
 		}
-		(this.props as any).dispatch(changeText(text));
+		changeText(text);
 	}
 
 	render() {
-		const {someState} = this.props;
-		if (!someState) {
+		const {blogState, } = this.props;
+		if (!blogState) {
 			return null;
 		}
 		return (
 			<div>
-				Blog imitation
-				<div>
-					{someState.counter}
-					<button onClick={this.increment}>Increment counter</button>
-					<button onClick={this.decrement}>Decrement counter</button>
-					<div>
-						<textarea cols={30} rows={10} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => this.keepPost(event)}></textarea>
-						<button onClick={this.send}>Send post</button>
+				<div className='blog-title'>Blog imitation</div>
+				<div className='blog-zone'>
+					<div className='blog-input'>
+						<div className='blog-subtitle'>Input your post</div>
+						<div className='blog-text-area'>
+							<textarea cols={50} rows={10} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => this.keepPost(event)}></textarea>
+						</div>
+						<button className='btn btn-primary blog-send-btn' onClick={this.send}>Send post</button>
 					</div>
-					<div>New posts</div>
-					<div>
-						{someState.posts && someState.posts.length
-						? someState.posts.map((post, index) => <div key={`${Math.round(Math.random() * 1000000) + index}`}>{post}</div>)
-						: null}
+					<div className='blog-output'>
+						<div className='blog-subtitle'>All posts</div>
+						<div className='blog-posts'>
+							{blogState.posts && blogState.posts.length
+							? blogState.posts.map((post, index) => <div className='blog-message' key={`${Math.round(Math.random() * 1000000) + index}`}>
+									<strong>{post.author}:</strong>{` ${post.text}`}
+								</div>)
+							: null}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -60,12 +111,17 @@ class BlogImitationInner extends React.Component<Props, {}> {
 	}
 }
 
-const mapStateToProps = (state: Props) => {
+const putStateToProps = (state: Props) => {
 	return {
-		someState: state.someState,
+		blogState: state.blogState,
 	};
 };
 
-const BlogImitation = connect(mapStateToProps)(BlogImitationInner);
+const putActionsToProps = (dispatch: any) => {
+	return {
+		changeText: bindActionCreators(changeText, dispatch),
+		updatePosts: bindActionCreators(updatePosts, dispatch),
+	};
+};
 
-export default BlogImitation;
+export default connect(putStateToProps, putActionsToProps)(BlogImitation);

@@ -1,3 +1,2 @@
-export const CHANGE_COUNTER = 'CHANGE_COUNTER';
 export const CHANGE_TEXT = 'CHANGE_TEXT';
 export const UPDATE_POSTS = 'UPDATE_POSTS';

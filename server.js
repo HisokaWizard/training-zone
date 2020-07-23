@@ -1,9 +1,12 @@
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
+const { graphqlHTTP } = require('express-graphql');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config');
+
+const {graphQLSchema} = require('./server/schema.ts');
 
 const app = express();
 const DIST_DIR = __dirname;
@@ -18,6 +21,8 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler)); // rebuild code after every save changes in code
 
 app.use(express.static(path.join(DIST_DIR, 'dist')));
+
+app.use(`/graphql`, graphqlHTTP({schema: graphQLSchema, graphiql: true}));
 
 app.get('*', (req, res, next) => {
     compiler.outputFileSystem.readFile(HTML_FILE, (err, result) => {

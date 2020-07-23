@@ -1,11 +1,5 @@
-import { CHANGE_COUNTER, CHANGE_TEXT, UPDATE_POSTS } from './constants';
-
-export function changeCounter(counter: number) {
-	return {
-		type: CHANGE_COUNTER,
-		payload: counter,
-	};
-}
+import { CHANGE_TEXT, UPDATE_POSTS } from './constants';
+import { Post } from './reducer';
 
 export function changeText(text: string) {
 	return {
@@ -14,9 +8,9 @@ export function changeText(text: string) {
 	};
 }
 
-export function updatePosts(post: string) {
+export function updatePosts(posts: Post[]) {
 	return {
 		type: UPDATE_POSTS,
-		payload: post,
+		payload: posts,
 	};
 }

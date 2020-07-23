@@ -1,9 +1,14 @@
 import { combineReducers } from 'redux';
+import { CHANGE_TEXT, UPDATE_POSTS } from './constants';
+
+export interface Post {
+	author: string;
+	text: string;
+}
 
 export interface BlogState {
-	counter: number;
 	text: string;
-	posts: string[];
+	posts: Post[];
 }
 
 export interface ActionType {
@@ -12,31 +17,24 @@ export interface ActionType {
 }
 
 const initialState: BlogState = {
-	counter: 340,
 	text: '',
 	posts: [],
 };
 
-function someState(state: BlogState = initialState, action: ActionType) {
-	if (action.type === 'CHANGE_COUNTER') {
+function blogState(state: BlogState = initialState, action: ActionType) {
+	if (action.type === CHANGE_TEXT) {
 		const newState = {
-			counter: state.counter + action.payload,
-			text: state.text,
-			posts: state.posts,
-		};
-		return newState;
-	} else if (action.type === 'CHANGE_TEXT') {
-		const newState = {
-			counter: state.counter,
 			text: action.payload,
 			posts: state.posts,
 		};
 		return newState;
-	} else if (action.type === 'UPDATE_POSTS') {
-		const posts = state.posts;
-		posts.push(action.payload);
+	} else if (action.type === UPDATE_POSTS) {
+		let posts = state.posts;
+		action.payload.forEach((post: any) => posts.push(post));
+		if (posts.length === 30) {
+			posts = posts.slice(15, 29);
+		}
 		const newState = {
-			counter: state.counter,
 			text: state.text,
 			posts: posts,
 		};
@@ -45,4 +43,4 @@ function someState(state: BlogState = initialState, action: ActionType) {
 	return state;
 }
 
-export const rootReducer = combineReducers({someState: someState});
+export const rootReducer = combineReducers({blogState: blogState});
