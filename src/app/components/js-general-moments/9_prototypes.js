@@ -14,7 +14,7 @@ const shazam = new SuperHero('Shazam', 'Super power');
 shazam.goal('cool pretty girls');
 console.log(SuperHero.prototype); // SuperHero { goal: [Function] }
 console.log(SuperHero); // Function SuperHero
-console.log(shazam); // SuperHero {...all fielda and methods of the class}
+console.log(shazam); // SuperHero {...all fields and methods of the class}
 console.log(shazam.constructor); // Function SuperHero
 console.log(shazam.__proto__ === SuperHero.prototype); // true
 

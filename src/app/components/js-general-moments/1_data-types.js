@@ -1,11 +1,11 @@
 // Types in the js: null, undefined, number, string, boolean, object, symbol
 
-console.log(typeof undefined);
-console.log(typeof 5);
+console.log(typeof undefined); // undefined
+console.log(typeof 5); // number
 console.log(typeof 'Hello'); // Variants of the string: '', "", ``
-console.log(typeof false);
-console.log(typeof {from: 'Spb'});
-console.log(typeof Symbol('Hi'));
+console.log(typeof false); // boolean
+console.log(typeof {from: 'Spb'}); // object
+console.log(typeof Symbol('Hi')); // symbol
 
 // Specials in the JS:
 console.log(typeof null); // historical reason it is looks like an object

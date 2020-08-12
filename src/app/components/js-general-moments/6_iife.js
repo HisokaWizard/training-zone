@@ -12,13 +12,26 @@ array[3](); // 5 т к не подходящий scope
 let array2 = [];
 
 for (var i = 0; i < 5; i++) {
-  (() => {
-    var j = i;
+  ((j) => {
+    // var j = i;
     array2.push(() => console.log(j))
-  })()
+  })(i)
 }
 
 array2[3](); // 3 т к корректный scope 
+
+// === одинаковые формы
+
+let array3 = [];
+
+for (var i = 0; i < 5; i++) {
+  (() => {
+    var j = i;
+    array3.push(() => console.log(j))
+  })()
+}
+
+array3[3](); // 3 т к корректный scope 
 
 // Пути создания IIFE
 (function() {
@@ -40,7 +53,7 @@ array2[3](); // 3 т к корректный scope
 // Try case with Immediate Invoked FE
 (function() {
   var tt = 0;
-  console.log(this); // globalThis for Node or window for browser
+  // console.log(this); // globalThis for Node or window for browser
   console.log(this.tt); // undefined т к переменная не в глобальной области видимости
   console.log(tt); // 0
 })()
