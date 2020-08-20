@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { CHANGE_TEXT, UPDATE_POSTS } from './constants';
+import { CHANGE_TEXT, UPDATE_POSTS, UPDATE_COLOR, INCREMENT } from './constants';
 
 export interface Post {
 	author: string;
@@ -9,6 +9,8 @@ export interface Post {
 export interface BlogState {
 	text: string;
 	posts: Post[];
+	color: string;
+	counter: number;
 }
 
 export interface ActionType {
@@ -18,7 +20,9 @@ export interface ActionType {
 
 const initialState: BlogState = {
 	text: '',
+	color: '',
 	posts: [],
+	counter: 0,
 };
 
 function blogState(state: BlogState = initialState, action: ActionType) {
@@ -26,6 +30,8 @@ function blogState(state: BlogState = initialState, action: ActionType) {
 		const newState = {
 			text: action.payload,
 			posts: state.posts,
+			color: state.color,
+			counter: state.counter,
 		};
 		return newState;
 	} else if (action.type === UPDATE_POSTS) {
@@ -37,6 +43,24 @@ function blogState(state: BlogState = initialState, action: ActionType) {
 		const newState = {
 			text: state.text,
 			posts: posts,
+			color: state.color,
+			counter: state.counter,
+		};
+		return newState;
+	} else if (action.type === UPDATE_COLOR) {
+		const newState = {
+			text: state.text,
+			posts: state.posts,
+			color: action.payload,
+			counter: state.counter,
+		};
+		return newState;
+	} else if (action.type === INCREMENT) {
+		const newState = {
+			text: state.text,
+			posts: state.posts,
+			color: state.color,
+			counter: action.payload,
 		};
 		return newState;
 	}

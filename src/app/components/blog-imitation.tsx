@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeText, updatePosts } from './blog-data-store/actions';
+import { changeText, updatePosts, updateColor } from './blog-data-store/actions';
 import { BlogState, Post } from './blog-data-store/reducer';
 
 interface Props {
 	blogState: BlogState;
 	changeText(text: string): void;
 	updatePosts(posts: Post[]): void;
+	updateColor(color: string): void;
+	increment(value: number): void;
 }
 
 const names: {name: string; id: number}[] = [
@@ -79,6 +81,22 @@ class BlogImitation extends React.Component<Props, {}> {
 		changeText(text);
 	}
 
+	randomColor = () => {
+		const red = Math.round(Math.random() * 255);
+		const green = Math.round(Math.random() * 255);
+		const blue = Math.round(Math.random() * 255);
+		return `rgb(${red},${green},${blue})`;
+	}
+
+	updateColor = () => {
+		const color = this.randomColor();
+		this.props.updateColor(color);
+	}
+
+	increment = () => {
+		this.props.increment(this.props.blogState.counter++);
+	}
+
 	render() {
 		const {blogState, } = this.props;
 		if (!blogState) {
@@ -94,6 +112,10 @@ class BlogImitation extends React.Component<Props, {}> {
 							<textarea cols={50} rows={10} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => this.keepPost(event)}></textarea>
 						</div>
 						<button className='btn btn-primary blog-send-btn' onClick={this.send}>Send post</button>
+						<button className='btn btn-primary blog-send-btn' onClick={this.updateColor}>Update color</button>
+						<button className='btn btn-primary blog-send-btn' onClick={this.increment}>Increment</button>
+						<div style={{backgroundColor: this.props.blogState.color, width: '100px', height: '100px'}}></div>
+						<div>{this.props.blogState.counter}</div>
 					</div>
 					<div className='blog-output'>
 						<div className='blog-subtitle'>All posts</div>
@@ -121,6 +143,7 @@ const putActionsToProps = (dispatch: any) => {
 	return {
 		changeText: bindActionCreators(changeText, dispatch),
 		updatePosts: bindActionCreators(updatePosts, dispatch),
+		updateColor: bindActionCreators(updateColor, dispatch),
 	};
 };
 
