@@ -10,6 +10,7 @@ import { GraphStructure } from './graph';
 import BlogImitation from './blog-imitation';
 
 import { rootReducer } from './blog-data-store/reducer';
+import { HardUILogicApp } from './hard-logic-ui-components/app';
 
 const store = createStore(rootReducer);
 
@@ -36,7 +37,7 @@ export class RouterComponent extends React.Component<{}, State> {
 				<Provider store={store}>
 					<Route path={'/blog'} component={BlogImitation} />
 				</Provider>
-
+				<Route path={'/apps/hard-ui-logic'} render={() => <HardUILogicApp title={'Super component'} />} />
 			</Router>
 		);
 	}
