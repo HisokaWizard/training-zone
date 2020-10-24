@@ -8,6 +8,7 @@ import { CounterState, rootReducer } from './custom-redux/reducers/rootReducer';
 import { asyncIncrement, decrement, increment } from './custom-redux/reducers/actions';
 import { useSelector, Provider } from 'react-redux';
 import { store } from '../router';
+import { TextField } from '@material-ui/core';
 
 interface HardUILogicAppProps {
 	title: string;
@@ -20,6 +21,12 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 	const randomMinusBtn = useRef(null);
 	
 	const updateCounterToRandomPlusAsync = () => {
+		let length = 5;
+		const numbers = numberGenerator(length);
+		while(length > 0) {
+			console.log(numbers.next().value);
+			length--;
+		}
 		const randomNum = Math.round(Math.random() * 1000);
 		// @ts-ignore
 		store.dispatch(asyncIncrement({value: randomNum, hide: hideBtn}));
@@ -48,6 +55,15 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 				Click here to get random value from 0 to 1000 and minus from result
 			</button>
 			<h3>{randomNumber}</h3>
+			<TextField
+          id="555555"
+          label="Helper text"
+					// defaultValue={randomNumber}
+					value={randomNumber}
+					onChange={(event) => randomNumber}
+          helperText="Some important text"
+          variant="outlined"
+        />
 			<AlertProvider>
 				<HookContext />
 				<Alert />
@@ -55,3 +71,10 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 		</Provider>
 	)
 };
+
+function* numberGenerator(length: number) {
+	while(length > 0) {
+		yield Math.round(Math.random() * 1000);
+		length--;
+	};
+}
