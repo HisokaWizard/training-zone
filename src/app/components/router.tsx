@@ -2,12 +2,12 @@ import * as React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, compose } from 'redux';
-import { StartPage } from './startPage';
-import { BinarySearch } from './binary-search';
-import { AllSort } from './sort';
-import { ListStructure } from './lists';
-import { GraphStructure } from './graph';
-import BlogImitation from './blog-imitation';
+import { StartPage } from './algoritms/startPage';
+import { BinarySearch } from './algoritms/binary-search';
+import { AllSort } from './algoritms/sort';
+import { ListStructure } from './algoritms/lists';
+import { GraphStructure } from './algoritms/graph';
+import BlogImitation from './algoritms/blog-imitation';
 
 // import { rootReducer } from './blog-data-store/reducer';
 import { HardUILogicApp } from './hard-logic-ui-components/app';

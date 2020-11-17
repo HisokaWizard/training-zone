@@ -27,7 +27,6 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 	
 	const updateCounterToRandomPlusAsync = () => {
 		const randomNum = Math.round(Math.random() * 1000);
-		// @ts-ignore
 		store.dispatch(asyncIncrement({value: randomNum, hide: hideBtn}));
 		const logItem: LoggerItem = {
 			method: 'updateCounterToRandomPlusAsync',
@@ -91,6 +90,11 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 		}) 
 	}
 
+	const clearLogger = () => {
+		logger.clearLog();
+		mLogger.clearLog();
+	}
+
 	return (
 		<Provider store={store}>
 			<h1>{title}</h1>
@@ -102,6 +106,9 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 			</button>
 			<button ref={randomMinusBtn} disabled={hideBtn} className='btn btn-danger' onClick={updateCounterToRandomMinus}>
 				Click here to get random value from 0 to 1000 and minus from result
+			</button>
+			<button disabled={hideBtn} className='btn btn-info' onClick={clearLogger}>
+				Clear Logger
 			</button>
 			<h3>{randomNumber}</h3>
 			<TextField

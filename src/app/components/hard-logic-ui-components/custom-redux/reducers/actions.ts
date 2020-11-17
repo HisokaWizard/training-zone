@@ -1,3 +1,4 @@
+import { AnyAction } from "redux";
 import { ActionType } from "../../../blog-data-store/reducer";
 import { INCREMENT, DECREMENT, HIDE_BUTTONS } from "./constants";
 import { CounterState } from "./rootReducer";
@@ -24,11 +25,12 @@ export function hideBtn(hide: boolean) {
 }
 
 export function asyncIncrement(state: CounterState) {
-  return (dispatch: (action: ActionType) => void) => {
+  (dispatch: (action: any) => void) => {
     dispatch(hideBtn(state.hide));
     setTimeout(() => {
       dispatch(increment(state.value));
       dispatch(hideBtn(state.hide));
     }, 5000);
   }
+  return {type: INCREMENT};
 }
