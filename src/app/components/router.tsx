@@ -13,6 +13,7 @@ import BlogImitation from './algoritms/blog-imitation';
 import { HardUILogicApp } from './hard-logic-ui-components/app';
 import thunk from 'redux-thunk';
 import { rootReducer } from './hard-logic-ui-components/custom-redux/reducers/rootReducer';
+import { GraphicContainer } from './universe/graphic-contaner';
 
 // const store = createStore(rootReducer);
 
@@ -59,6 +60,7 @@ export class RouterComponent extends React.Component<{}, State> {
 				<Provider store={store}>
 					<Route path={'/apps/hard-ui-logic'} render={() => <HardUILogicApp title={'Super component'} />} />
 				</Provider>
+				<Route path='/universe' component={GraphicContainer} />
 			</Router>
 		);
 	}
