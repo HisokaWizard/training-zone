@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { LegacyRef, useCallback, useEffect, useRef, useState } from 'react';
 import thunk from 'redux-thunk';
 import { Alert } from './components/alert/alert';
 import { AlertProvider } from './components/alert/alertContext';
@@ -8,6 +8,7 @@ import { useSelector, Provider } from 'react-redux';
 import { store } from '../router';
 import { TextField } from '@material-ui/core';
 import { LoggerItem, MiddleLogger, SimpleLogger } from './components/simpleLogger';
+import { WebSocketComponent } from './components/web-socket';
 
 interface HardUILogicAppProps {
 	title: string;
@@ -24,6 +25,8 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 	const mLogger2 = new MiddleLogger();
 	const mLogger3 = new MiddleLogger();
 	const mLogger4 = new MiddleLogger();
+	const [color, setColor] = useState('white');
+	const btnRef: LegacyRef<HTMLButtonElement> = useRef(null);
 	
 	const updateCounterToRandomPlusAsync = () => {
 		const randomNum = Math.round(Math.random() * 1000);
@@ -95,6 +98,23 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 		mLogger.clearLog();
 	}
 
+	const colorChange = useCallback(() => {
+		console.log('colorChange creation');
+		if (color === 'white') {
+			setColor('blue')
+		} else if (color === 'blue') {
+			setColor('green')
+		} else if (color === 'green') {
+			setColor('yellow')
+		} else if (color === 'yellow') {
+			setColor('white')
+		}
+	}, [color])
+
+	useEffect(() => {
+		btnRef.current.style.border = color === 'white' ? '5px solid coral' : 'none';
+	}, [color])
+
 	return (
 		<Provider store={store}>
 			<h1>{title}</h1>
@@ -110,6 +130,9 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 			<button disabled={hideBtn} className='btn btn-info' onClick={clearLogger}>
 				Clear Logger
 			</button>
+			<button ref={btnRef} className={'btn btn-success'} onClick={colorChange} style={{backgroundColor: color, color: 'grey'}}>
+				Change button color
+			</button>
 			<h3>{randomNumber}</h3>
 			<TextField
           id="555555"
@@ -123,6 +146,7 @@ export const HardUILogicApp = ({ title }: HardUILogicAppProps) => {
 				<HookContext />
 				<Alert />
 			</AlertProvider>
+			<WebSocketComponent />
 		</Provider>
 	)
 };

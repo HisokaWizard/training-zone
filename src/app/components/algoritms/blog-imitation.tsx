@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeText, updatePosts, updateColor } from './blog-data-store/actions';
-import { BlogState, Post } from './blog-data-store/reducer';
+import { changeText, updatePosts, updateColor } from '../blog-data-store/actions';
+import { BlogState, Post } from '../blog-data-store/reducer';
 
 interface Props {
 	blogState: BlogState;
