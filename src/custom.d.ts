@@ -22,3 +22,8 @@ declare module "*.jpeg" {
   const content: any;
   export default content;
 }
+
+declare module "*.mov" {
+  const content: any;
+  export default content;
+}
