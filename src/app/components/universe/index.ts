@@ -1,67 +1,58 @@
-import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { earthMesh, EARTH_ROTATE_ITS_SELF, EARTH_SPEED, EARTH_START_POSITION } from './planets/earth';
-import { mercuryMesh, MERCURY_ROTATE_ITS_SELF, MERCURY_SPEED, MERCURY_START_POSITION} from './planets/mercury';
-import { solarMesh, SOLAR_ROTATE_ITS_SELF } from './planets/solar';
-import { venusMesh, VENUS_ROTATE_ITS_SELF, VENUS_SPEED, VENUS_START_POSITION } from './planets/venus';
-import { orbitalRotation, rotationSpeed } from './utils/math';
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer();
+import './styles/styles.css';
 
-new OrbitControls(camera, renderer.domElement);
-const pointLight = new THREE.PointLight(0xffffff, 3.0, 0, 0);
-scene.add(pointLight);
+import { 
+  addPlanetToScene,
+  createCamera,
+  createLight,
+  createRenderer,
+  createScene,
+  resizeWindow
+} from './utils/createGeneralScene';
+import { earthMesh, earthRotationAndMoving } from './planets/earth';
+import { mercuryMesh, mercuryRotationAndMoving } from './planets/mercury';
+import { solarMesh, solarRotation } from './planets/solar';
+import { venusMesh, venusRotationAndMoving } from './planets/venus';
+import { addStopperBtn, sceneState } from './utils/scene-stopper';
+import { planetInfoClick } from './utils/card';
 
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-window.addEventListener('resize', () => {
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  renderer.setSize(width, height);
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
-});
-
-const solar = solarMesh();
-const mercury = mercuryMesh();
-const newMercuryPosition = orbitalRotation(MERCURY_SPEED, MERCURY_START_POSITION.X);
-const venus = venusMesh();
-const newVenusPosition = orbitalRotation(VENUS_SPEED, VENUS_START_POSITION.X);
-const earth = earthMesh();
-const newEarthPosition = orbitalRotation(EARTH_SPEED, EARTH_START_POSITION.X);
-
-scene.add(solar);
-scene.add(mercury);
-scene.add(venus);
-scene.add(earth);
-
-camera.position.z = 20;
+const scene = createScene();
+const camera = createCamera();
+const renderer = createRenderer();
+const orbitalControl = new OrbitControls(camera, renderer.domElement);
+createLight(scene);
+resizeWindow(renderer, camera);
+const solar = addPlanetToScene(scene, solarMesh(), 'solar');
+const mercury = addPlanetToScene(scene, mercuryMesh(), 'mercury');
+const venus = addPlanetToScene(scene, venusMesh(), 'venus');
+const earth = addPlanetToScene(scene, earthMesh(), 'earth');
 
 // game logic
 const update = () => {
-  solar.rotation.z += rotationSpeed(SOLAR_ROTATE_ITS_SELF);
-  //
-  mercury.rotation.z += rotationSpeed(MERCURY_ROTATE_ITS_SELF);
-  const newMercuryPos = newMercuryPosition();
-  mercury.position.x = newMercuryPos.x;
-  mercury.position.y = newMercuryPos.y;
-  //
-  venus.rotation.z += rotationSpeed(VENUS_ROTATE_ITS_SELF);
-  const newVenusPos = newVenusPosition();
-  venus.position.x = newVenusPos.x;
-  venus.position.y = newVenusPos.y;
-  //
-  earth.rotation.z += rotationSpeed(EARTH_ROTATE_ITS_SELF);
-  const newEarthPos = newEarthPosition();
-  earth.position.x = newEarthPos.x;
-  earth.position.y = newEarthPos.y;
+  if (!sceneState.stopAction) {
+    solar.rotation.z = solarRotation(solar);
+    //
+    const mercuryDislocationChange = mercuryRotationAndMoving(mercury);
+    mercury.position.x = mercuryDislocationChange.position.x;
+    mercury.position.y = mercuryDislocationChange.position.y;
+    mercury.rotation.z = mercuryDislocationChange.rotation.z;
+    //
+    const venusDislocationChange = venusRotationAndMoving(venus);
+    venus.position.x = venusDislocationChange.position.x;
+    venus.position.y = venusDislocationChange.position.y;
+    venus.rotation.z = venusDislocationChange.rotation.z;
+    //
+    const earthDislocationChange = earthRotationAndMoving(earth);
+    earth.position.x = earthDislocationChange.position.x;
+    earth.position.y = earthDislocationChange.position.y;
+    earth.rotation.z = earthDislocationChange.rotation.z;
+  }
 }
 
 // draw scene
 const render = () => {
+  orbitalControl.update();
   renderer.render(scene, camera);
 }
 
@@ -74,3 +65,8 @@ const gameLoop = () => {
 }
 
 gameLoop();
+
+// UI controls
+addStopperBtn(sceneState);
+
+document.body.addEventListener('dblclick', (event) => planetInfoClick(event, scene, camera));

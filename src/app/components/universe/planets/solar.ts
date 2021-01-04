@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import sun from '@models/sun.jpg';
 import sun2 from '@models/sun2.jpg';
+import { rotationSpeed } from '../utils/math';
 
 const SOLAR_SIZE = 1392700;
 export const SOLAR_ROTATE_ITS_SELF = 27; // days
@@ -15,4 +16,9 @@ export const solarMesh = () => {
   const solar = new THREE.Mesh(geometry, material);
   solar.position.set(0, 0, 0);
   return solar;
+}
+
+export const solarRotation = (solar: THREE.Mesh): number => {
+  solar.rotation.z += rotationSpeed(SOLAR_ROTATE_ITS_SELF);
+  return solar.rotation.z;
 }

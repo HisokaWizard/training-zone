@@ -1,3 +1,6 @@
+import * as THREE from 'three';
+import { getPlanetList } from './planet-list';
+
 export const cardAboutPlanet = (id: string) => {
   const card = document.createElement('div');
   card.id = id;
@@ -23,10 +26,7 @@ export const cardAboutPlanet = (id: string) => {
   return card;
 }
 
-const openSunCard = (event: MouseEvent) => {
-  event.preventDefault();
-  const sunVid= document.getElementById('sun-light');
-  (sunVid as HTMLVideoElement).play();
+const openSunCard = () => {
   const sun = document.getElementById('sun');
   if (sun && sun.style.display !== 'none') {
     sun.style.display = 'none';
@@ -37,3 +37,37 @@ const openSunCard = (event: MouseEvent) => {
     document.body.appendChild(card);
   }
 };
+
+export const convertCoordsToTheVector = (event: MouseEvent, camera: THREE.PerspectiveCamera): THREE.Raycaster => {
+  const mouse = new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1,
+    -(event.clientY / window.innerHeight) * 2 + 1);
+  const raycaster = new THREE.Raycaster();
+  raycaster.setFromCamera( mouse, camera );
+  return raycaster;
+}
+
+export const planetInfoClick = (event: MouseEvent, scene: THREE.Scene, camera: THREE.PerspectiveCamera) => {
+  event.preventDefault();
+  const raycaster = convertCoordsToTheVector(event, camera);
+  const intersects = raycaster.intersectObjects(scene.children);
+  if (intersects.length === 1) {
+    const planet3D = intersects[0].object;
+    getPlanetList().forEach(planet => {
+      if (planet.id === planet3D.id) {
+        console.log(planet.name);
+        switch(planet.name) {
+          case 'solar': 
+            openSunCard();
+            break;
+          case 'mercury':
+            break;
+          case 'venus':
+            break;
+          case 'earth':
+            break;
+          default: break;
+        }
+      }
+    });
+  }
+}
