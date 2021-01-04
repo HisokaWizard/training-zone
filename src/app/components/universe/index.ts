@@ -15,7 +15,7 @@ import { mercuryMesh, mercuryRotationAndMoving } from './planets/mercury';
 import { solarMesh, solarRotation } from './planets/solar';
 import { venusMesh, venusRotationAndMoving } from './planets/venus';
 import { addStopperBtn, sceneState } from './utils/scene-stopper';
-import { planetInfoClick } from './utils/card';
+import { createCard, planetInfoClick } from './utils/card';
 
 const scene = createScene();
 const camera = createCamera();
@@ -68,5 +68,6 @@ gameLoop();
 
 // UI controls
 addStopperBtn(sceneState);
+createCard();
 
 document.body.addEventListener('dblclick', (event) => planetInfoClick(event, scene, camera));

@@ -1,7 +1,6 @@
 import * as THREE from 'three';
-import nightSky from '@models/night-sky.jpg';
+import nightSky from '@models/night-sky-2.jpg';
 import { addPlanetToList } from './planet-list';
-import { mercuryMesh } from '../planets/mercury';
 
 export const createScene = (): THREE.Scene => {
   const scene = new THREE.Scene();

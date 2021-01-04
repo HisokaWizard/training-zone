@@ -1,21 +1,64 @@
 .stopper {
-  background: radial-gradient(40% 50%, #3060b8, #551a97);
-  border-radius: 100%;
+  background-color:#06132b;
+  border-radius: 5px;
+  border: '3px solid #06132b';
   position: fixed;
   top: 10px;
   right: 10px;
   width: 90px;
-  height: 90px;
+  height: 50px;
   border: none;
   color: silver;
-  box-shadow: 2px 0px 13px 1px rgba(255,255,255,0.5)
+  box-shadow: 0 0 5px 1px black;
 }
 
 .stopper:hover {
-  background: radial-gradient(60% 70%, #3060b8, #551a97);
+  background: #0b2149;
+  cursor: pointer;
 }
 
 .stopper:focus, .stopper:active, .stopper:visited {
   border: none;
   outline: none;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 400px;
+  height: 700px;
+  top: 70px;
+  right: 10px;
+  padding: 20px 30px;
+  background: rgba(255,255,255, 0.6);
+  border-radius: 4px;
+}
+
+.image-card {
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.text-card {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  max-height: 460px;
+  overflow-y: auto;
+  padding: 10px;
+  background-color: silver;
+  box-shadow: 0 0 3px 1px grey;
+  border-radius: 4px;
+}
+
+.close-btn-card {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+  cursor: pointer;
 }
