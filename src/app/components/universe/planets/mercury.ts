@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import { coefficientDiameter, coefficientOrbitalRotation, SOLAR_ROTATE_ITS_SELF } from './solar';
-import mercuryTexture from '@models/mercury.jpeg';
+import mercuryTexture from '@models/mercury.jpg';
 import { orbitalRotation, rotationSpeed } from '../utils/math';
-import { cloneDeep } from 'lodash';
 
 const MERCURY_SIZE = 2439 * 50; // scale instead of real x50
 export const MERCURY_ROTATE_ITS_SELF = SOLAR_ROTATE_ITS_SELF / 2.2; // 59 days

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import nightSky from '@models/night-sky-2.jpg';
+import nightSky from '@models/night-sky.jpg';
 import { addPlanetToList } from './planet-list';
 
 export const createScene = (): THREE.Scene => {

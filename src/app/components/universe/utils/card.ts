@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { earthInfo, mercuryInfo, PlanetInformation, solarInfo, venusInfo } from './info-about-planet';
 import { getPlanetList, PlanetMap } from './planet-list';
-import closeBtnImg from '@models/close.svg';
+import closeBtnImg from '@models/close-yellow.svg';
 
 export enum PlanetNames {
   solar = 'solar',

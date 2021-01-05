@@ -27,3 +27,13 @@ declare module "*.mov" {
   const content: any;
   export default content;
 }
+
+declare module "*.ttf" {
+  const content: any;
+  export default content;
+}
+
+declare module "*.eot" {
+  const content: any;
+  export default content;
+}
