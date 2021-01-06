@@ -17,10 +17,11 @@ import {
 } from './utils/createGeneralScene';
 import { earthMesh, earthRotationAndMoving } from './planets/earth';
 import { mercuryMesh, mercuryRotationAndMoving } from './planets/mercury';
-import { getUniforms, solarMesh, solarRotation } from './planets/solar';
+import { getUniforms, solarMesh, solarRotation, solarShineMesh } from './planets/solar';
 import { venusMesh, venusRotationAndMoving } from './planets/venus';
 import { addStopperBtn, sceneState } from './utils/scene-stopper';
-import { createCard, planetInfoClick } from './utils/card';
+import { createCard, planetInfoClick, PlanetNames } from './utils/card';
+import { marsMesh, marsRotationAndMoving } from './planets/mars';
 
 const scene = createScene();
 const camera = createCamera();
@@ -30,10 +31,12 @@ createLight(scene);
 resizeWindow(renderer, camera);
 const clock = new THREE.Clock();
 const uniforms = getUniforms();
-const solar = addPlanetToScene(scene, solarMesh(uniforms), 'solar');
-const mercury = addPlanetToScene(scene, mercuryMesh(), 'mercury');
-const venus = addPlanetToScene(scene, venusMesh(), 'venus');
-const earth = addPlanetToScene(scene, earthMesh(), 'earth');
+const solarShine = addPlanetToScene(scene, solarShineMesh(), PlanetNames.solar);
+const solar = addPlanetToScene(scene, solarMesh(uniforms), PlanetNames.solar);
+const mercury = addPlanetToScene(scene, mercuryMesh(), PlanetNames.mercury);
+const venus = addPlanetToScene(scene, venusMesh(), PlanetNames.venus);
+const earth = addPlanetToScene(scene, earthMesh(), PlanetNames.earth);
+const mars = addPlanetToScene(scene, marsMesh(), PlanetNames.mars);
 //
 
 const renderModel = new RenderPass(scene, camera);
@@ -47,12 +50,13 @@ composer.addPass(effectFilm);
 // game logic
 const update = () => {
   const delta = 5 * clock.getDelta();
-  uniforms.time.value += 0.2 * delta;
+  uniforms.time.value += 0.5 * delta;
   renderer.clear();
   composer.render(0.01);
 
   if (!sceneState.stopAction) {
     solar.rotation.z = solarRotation(solar);
+    solarShine.rotation.z = solarRotation(solarShine);
     //
     const mercuryDislocationChange = mercuryRotationAndMoving(mercury);
     mercury.position.x = mercuryDislocationChange.position.x;
@@ -68,6 +72,11 @@ const update = () => {
     earth.position.x = earthDislocationChange.position.x;
     earth.position.y = earthDislocationChange.position.y;
     earth.rotation.z = earthDislocationChange.rotation.z;
+    //
+    const marsDislocationChange = marsRotationAndMoving(mars);
+    mars.position.x = marsDislocationChange.position.x;
+    mars.position.y = marsDislocationChange.position.y;
+    mars.rotation.z = marsDislocationChange.rotation.z;
   }
 }
 

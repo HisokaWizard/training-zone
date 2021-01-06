@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { earthInfo, mercuryInfo, PlanetInformation, solarInfo, venusInfo } from './info-about-planet';
+import { earthInfo, marsInfo, mercuryInfo, PlanetInformation, solarInfo, venusInfo } from './info-about-planet';
 import { getPlanetList, PlanetMap } from './planet-list';
 import closeBtnImg from '@models/close-yellow.svg';
 
@@ -8,6 +8,7 @@ export enum PlanetNames {
   mercury = 'mercury',
   venus = 'venus',
   earth = 'earth',
+  mars = 'mars',
 }
 
 export const createCard = () => {
@@ -79,6 +80,9 @@ const planetCardSelect = (planet: PlanetMap) => {
     case PlanetNames.earth:
       planetCardInfo(earthInfo);
       break;
+    case PlanetNames.mars:
+      planetCardInfo(marsInfo);
+      break;
   }
 }
 
@@ -86,7 +90,7 @@ export const planetInfoClick = (event: MouseEvent, scene: THREE.Scene, camera: T
   event.preventDefault();
   const raycaster = convertCoordsToTheVector(event, camera);
   const intersects = raycaster.intersectObjects(scene.children);
-  if (intersects.length === 1) {
+  if (intersects.length > 0) {
     const planet3D = intersects[0].object;
     getPlanetList().forEach(planet => {
       if (planet.id === planet3D.id) {

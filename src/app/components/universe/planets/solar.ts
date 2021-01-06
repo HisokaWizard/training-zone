@@ -1,7 +1,5 @@
 import * as THREE from 'three';
-import sun from '@models/sun.jpg';
-import sun2 from '@models/sun2.jpg';
-import lavaCloud from '@models/lava-cloud.jpg';
+import lavaCloud from '@models/lava-cloud.png';
 import lavaTile from '@models/lava-tile.jpg';
 import { rotationSpeed } from '../utils/math';
 
@@ -19,6 +17,35 @@ export const solarMesh = (uniforms: any) => {
   return solar;
 }
 
+const vertexShineShader = `
+varying vec3 vNormal;
+void main() {
+  vNormal = normalize( normalMatrix * normal );
+  gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+}`;
+
+const fragmentShineShader = `
+varying vec3 vNormal;
+void main() {
+	float intensity = pow( 0.7 - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) ), 5.0 ); 
+  gl_FragColor = vec4( 1.0, 0.8, 0.2, 1.5 ) * intensity;
+}`;
+
+export const solarShineMesh = () => {
+  const geometry = new THREE.SphereGeometry(SOLAR_SIZE / coefficientDiameter * 1.15, 32, 16);
+  const material = new THREE.ShaderMaterial({
+    uniforms: {},
+    vertexShader: vertexShineShader,
+    fragmentShader: fragmentShineShader,
+    side: THREE.BackSide,
+    blending: THREE.AdditiveBlending,
+    transparent: true
+  });
+  const shine = new THREE.Mesh(geometry, material);
+  shine.position.set(0, 0, 0);
+  return shine;
+}
+
 export const solarRotation = (solar: THREE.Mesh): number => {
   solar.rotation.z += rotationSpeed(SOLAR_ROTATE_ITS_SELF);
   return solar.rotation.z;
@@ -27,9 +54,10 @@ export const solarRotation = (solar: THREE.Mesh): number => {
 export const getUniforms = () => {
   const textureLoader = new THREE.TextureLoader();
   return {
-    fogDensity: { value: 0 },
-    time: { value: 1.0 },
-    uvScale: { value: new THREE.Vector2(3.0, 1.0) },
+    fogDensity: { value: 0.00005 },
+    fogColor: { value: new THREE.Vector3(145, 78, 2) },
+    time: { value: 2.5 },
+    uvScale: { value: new THREE.Vector2(3, 3) },
     texture1: { value: textureLoader.load(lavaTile) },
     texture2: { value: textureLoader.load(lavaCloud) }
   }
@@ -73,7 +101,7 @@ const fragmentShader = `
   	T2.y += noise.z * 0.2;
   	float p = texture2D( texture1, T1 * 2.0 ).a;
   	vec4 color = texture2D( texture2, T2 * 2.0 );
-  	vec4 temp = color * ( vec4( p, p, p, p ) * 2.0 ) + ( color * color - 0.1 );
+  	vec4 temp = color * ( vec4( p, p, p, p ) * 1.0 ) + ( color * color - 0.05 );
   	if( temp.r > 1.0 ) { temp.bg += clamp( temp.r - 2.0, 0.0, 100.0 ); }
   	if( temp.g > 1.0 ) { temp.rb += temp.g - 1.0; }
   	if( temp.b > 1.0 ) { temp.rg += temp.b - 1.0; }
@@ -85,3 +113,4 @@ const fragmentShader = `
   	gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
   }
 `;
+
