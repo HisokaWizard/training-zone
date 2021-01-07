@@ -1,5 +1,16 @@
 import * as THREE from 'three';
-import { earthInfo, marsInfo, mercuryInfo, PlanetInformation, solarInfo, venusInfo } from './info-about-planet';
+import {
+  earthInfo,
+  jupiterInfo,
+  marsInfo,
+  mercuryInfo,
+  neptuneInfo,
+  PlanetInformation,
+  saturnInfo,
+  solarInfo,
+  uranusInfo,
+  venusInfo,
+} from './info-about-planet';
 import { getPlanetList, PlanetMap } from './planet-list';
 import closeBtnImg from '@models/close-yellow.svg';
 
@@ -9,6 +20,10 @@ export enum PlanetNames {
   venus = 'venus',
   earth = 'earth',
   mars = 'mars',
+  jupiter = 'jupiter',
+  saturn = 'saturn',
+  uranus = 'uranus',
+  neptune = 'neptune',
 }
 
 export const createCard = () => {
@@ -45,7 +60,7 @@ const closeBtnElement = (): HTMLDivElement => {
 
 export const planetCardInfo = (info: PlanetInformation) => {
   const card = document.getElementById('planet-card');
-  while(card.firstChild) {
+  while (card.firstChild) {
     card.removeChild(card.lastChild);
   }
   card.style.display = 'flex';
@@ -67,8 +82,8 @@ export const convertCoordsToTheVector = (event: MouseEvent, camera: THREE.Perspe
 }
 
 const planetCardSelect = (planet: PlanetMap) => {
-  switch(planet.name) {
-    case PlanetNames.solar: 
+  switch (planet.name) {
+    case PlanetNames.solar:
       planetCardInfo(solarInfo);
       break;
     case PlanetNames.mercury:
@@ -82,6 +97,18 @@ const planetCardSelect = (planet: PlanetMap) => {
       break;
     case PlanetNames.mars:
       planetCardInfo(marsInfo);
+      break;
+    case PlanetNames.jupiter:
+      planetCardInfo(jupiterInfo);
+      break;
+    case PlanetNames.saturn:
+      planetCardInfo(saturnInfo);
+      break;
+    case PlanetNames.uranus:
+      planetCardInfo(uranusInfo);
+      break;
+    case PlanetNames.neptune:
+      planetCardInfo(neptuneInfo);
       break;
   }
 }

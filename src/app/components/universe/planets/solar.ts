@@ -28,7 +28,7 @@ const fragmentShineShader = `
 varying vec3 vNormal;
 void main() {
 	float intensity = pow( 0.7 - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) ), 5.0 ); 
-  gl_FragColor = vec4( 1.0, 0.8, 0.2, 1.5 ) * intensity;
+  gl_FragColor = vec4( 1.0, 0.65, 0.3, 9.5 ) * intensity;
 }`;
 
 export const solarShineMesh = () => {
@@ -101,7 +101,7 @@ const fragmentShader = `
   	T2.y += noise.z * 0.2;
   	float p = texture2D( texture1, T1 * 2.0 ).a;
   	vec4 color = texture2D( texture2, T2 * 2.0 );
-  	vec4 temp = color * ( vec4( p, p, p, p ) * 1.0 ) + ( color * color - 0.05 );
+  	vec4 temp = color * ( vec4( p, p - 0.9, p - 300.0, p - 20.0) * 1.0 ) + ( color * color - 0.3 );
   	if( temp.r > 1.0 ) { temp.bg += clamp( temp.r - 2.0, 0.0, 100.0 ); }
   	if( temp.g > 1.0 ) { temp.rb += temp.g - 1.0; }
   	if( temp.b > 1.0 ) { temp.rg += temp.b - 1.0; }

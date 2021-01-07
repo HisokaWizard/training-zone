@@ -18,3 +18,18 @@ export const orbitalRotation = (planetSpeed: number, startPosition: number) => {
     return {x: newX, y: newY};
   }
 }
+
+export interface PlanetMovingConfig {
+  selfRotate: number;
+  orbitalRotation: () => {x: number, y: number};
+}
+
+export const planetRotationAndMoving = (
+  planet: THREE.Mesh, planetConfig: PlanetMovingConfig
+): {position: THREE.Vector3, rotation: THREE.Euler} => {
+  planet.rotation.z += rotationSpeed(planetConfig.selfRotate);
+  const newPlanetPos = planetConfig.orbitalRotation();
+  planet.position.x = newPlanetPos.x;
+  planet.position.y = newPlanetPos.y;
+  return {position: planet.position, rotation: planet.rotation};
+}

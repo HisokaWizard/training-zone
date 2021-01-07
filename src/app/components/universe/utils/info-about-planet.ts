@@ -3,6 +3,10 @@ import mercuryImg from '@models/mercury_picture.jpg';
 import venusImg from '@models/venus_picture.jpg';
 import earthImg from '@models/earth_picture.jpg';
 import marsImg from '@models/mars_picture.jpg';
+import jupiterImg from '@models/jupiter_picture.jpg';
+import saturnImg from '@models/saturn_picture.png';
+import uranusImg from '@models/uranus_picture.jpeg';
+import neptuneImg from '@models/neptune_picture.jpg';
 
 export interface PlanetInformation {
   image: any;
@@ -76,4 +80,50 @@ export const marsInfo: PlanetInformation = {
   which gives it a reddish appearance distinctive among the astronomical bodies visible to the naked eye.
   Mars is a terrestrial planet with a thin atmosphere, with surface features reminiscent of the impact craters of the Moon and the valleys,
   deserts and polar ice caps of Earth.`
+};
+
+export const jupiterInfo: PlanetInformation = {
+  image: jupiterImg,
+  content: `Jupiter is the fifth planet from the Sun and the largest in the Solar System.
+  It is a gas giant with a mass one-thousandth that of the Sun,
+  but two-and-a-half times that of all the other planets in the Solar System combined.
+  Jupiter is one of the brightest objects visible to the naked eye in the night sky and has been known
+  to ancient civilizations since before recorded history. It is named after the Roman god Jupiter.
+  When viewed from Earth, Jupiter can be bright enough for its reflected light to cast visible shadows,
+  and is on average the third-brightest natural object in the night sky after the Moon and Venus.`
+};
+
+export const saturnInfo: PlanetInformation = {
+  image: saturnImg,
+  content: `Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter.
+  It is a gas giant with an average radius of about nine times that of Earth.
+  It only has one-eighth the average density of Earth; however, with its larger volume,
+  Saturn is over 95 times more massive.
+  Saturn is named after the Roman god of wealth and agriculture; its astronomical symbol (♄) represents the god's sickle.
+  The Romans named the seventh day of the week Saturday, Sāturni diēs ("Saturn's Day") no later than the 2nd century for the planet Saturn.`
+};
+
+export const uranusInfo: PlanetInformation = {
+  image: uranusImg,
+  content: `Uranus is the seventh planet from the Sun. Its name is a reference to the Greek god of the sky, Uranus,
+  who, according to Greek mythology, was the grandfather of Zeus (Jupiter) and father of Cronus (Saturn).
+  It has the third-largest planetary radius and fourth-largest planetary mass in the Solar System.
+  Uranus is similar in composition to Neptune,
+  and both have bulk chemical compositions which differ from that of the larger gas giants Jupiter and Saturn.
+  For this reason, scientists often classify Uranus and Neptune as "ice giants" to distinguish them from the other gas giants.
+  Uranus's atmosphere is similar to Jupiter's and Saturn's in its primary composition of hydrogen and helium,
+  but it contains more "ices" such as water, ammonia, and methane, along with traces of other hydrocarbons.
+  It has the coldest planetary atmosphere in the Solar System, with a minimum temperature of 49 K (−224 °C; −371 °F),
+  and has a complex, layered cloud structure with water thought to make up the lowest clouds and methane the uppermost layer of clouds.
+  The interior of Uranus is mainly composed of ices and rock.`
+};
+
+export const neptuneInfo: PlanetInformation = {
+  image: neptuneImg,
+  content: `Neptune is the eighth and farthest-known Solar planet from the Sun.
+  In the Solar System, it is the fourth-largest planet by diameter, the third-most-massive planet, and the densest giant planet.
+  It is 17 times the mass of Earth, slightly more massive than its near-twin Uranus.
+  Neptune is denser and physically smaller than Uranus because its greater mass causes more gravitational compression of its atmosphere.
+  The planet orbits the Sun once every 164.8 years at an average distance of 30.1 AU (4.5 billion km; 2.8 billion mi).
+  It is named after the Roman god of the sea and has the astronomical symbol ♆, a stylised version of the god Neptune's trident.`
 };

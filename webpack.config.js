@@ -55,7 +55,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
     resolve: {
-        extensions: ['.js', '.json', '.png', '.css', '.ts', '.tsx', '.jsx'],
+        extensions: ['.js', '.json', '.png', '.css', '.ts', '.tsx', '.jsx', 'jpg', 'jpeg', 'png'],
         alias: {
             '@universe': path.resolve(__dirname, 'src/app/components/universe'),
             '@models': path.resolve(__dirname, 'src/app/components/universe/models'),
