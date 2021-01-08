@@ -13,6 +13,10 @@ import {
 } from './info-about-planet';
 import { getPlanetList, PlanetMap } from './planet-list';
 import closeBtnImg from '@models/close-yellow.svg';
+import { sceneState, SceneState } from './scene-stopper';
+import { solarSystem } from '..';
+import { createLight, START_CAMERA_POSITION_Z } from './createGeneralScene';
+import { planetMoving } from './planets-moving';
 
 export enum PlanetNames {
   solar = 'solar',
@@ -122,7 +126,64 @@ export const planetInfoClick = (event: MouseEvent, scene: THREE.Scene, camera: T
     getPlanetList().forEach(planet => {
       if (planet.id === planet3D.id) {
         planetCardSelect(planet);
+        planetSceneWithCard(scene, planet.name, camera);
       }
     });
   }
+}
+
+export const planetSceneWithCard = (scene: THREE.Scene, planetKey: string, camera: THREE.PerspectiveCamera) => {
+  sceneState.isSolarSystem = false;
+  sceneState.stopAction = !sceneState.stopAction;
+  scene.clear();
+  const currentPlanet = ((solarSystem as any)[planetKey] as THREE.Mesh);
+  currentPlanet.position.set(0,0,0);
+  const light = new THREE.AmbientLight(0xffffff, 1);
+  scene.add(light);
+  scene.add(currentPlanet);
+  if (planetKey === PlanetNames.solar) {
+    scene.add(solarSystem.solarShine);
+  }
+  if (planetKey === PlanetNames.saturn) {
+    solarSystem.saturnRing.position.set(0,0,0);
+    scene.add(solarSystem.saturnRing);
+  }
+  camera.position.set(0,0,START_CAMERA_POSITION_Z);
+}
+
+export const switchToSolarSystem = (
+  event: MouseEvent,
+  sceneState: SceneState,
+  scene: THREE.Scene,
+  camera: THREE.PerspectiveCamera,
+  renderer: THREE.WebGLRenderer,
+) => {
+  sceneState.isSolarSystem = true;
+  sceneState.stopAction = !sceneState.stopAction;
+  const planetCard = document.getElementById('planet-card');
+  planetCard.style.display = 'none';
+  scene.clear();
+  Object.keys(solarSystem).forEach(key => {
+    scene.add((solarSystem as any)[key]);
+  });
+  createLight(scene);
+  camera.position.set(0,0,START_CAMERA_POSITION_Z);
+  planetMoving();
+  renderer.render(scene, camera);
+}
+
+export const backToSolarSystem = (
+  sceneState: SceneState,
+  scene: THREE.Scene,
+  camera: THREE.PerspectiveCamera,
+  renderer: THREE.WebGLRenderer
+): HTMLButtonElement => {
+  const btnElement = document.createElement('button');
+  btnElement.id = 'back-to-solar';
+  btnElement.classList.add('solarBtn');
+  btnElement.style.display = 'none';
+  btnElement.textContent = 'Back to solar system';
+  btnElement.addEventListener('click', (event) => switchToSolarSystem(event, sceneState, scene, camera, renderer));
+  document.body.appendChild(btnElement);
+  return btnElement;
 }

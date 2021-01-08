@@ -5,7 +5,7 @@ import { orbitalRotation, PlanetMovingConfig } from '../utils/math';
 
 const JUPITER_SIZE = 71492 * 5; // scale instead of real x5
 export const JUPITER_START_POSITION = {
-  X: 7,
+  X: 6.5,
   Y: 0,
   Z: 0,
 };

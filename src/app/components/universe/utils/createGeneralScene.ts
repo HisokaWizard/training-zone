@@ -1,8 +1,48 @@
 import * as THREE from 'three';
 import nightSky from '@models/night-sky.jpg';
 import { addPlanetToList } from './planet-list';
+import { solarMesh, solarShineMesh, solarUniforms } from '../planets/solar';
+import { mercuryMesh } from '../planets/mercury';
+import { venusMesh } from '../planets/venus';
+import { earthMesh } from '../planets/earth';
+import { marsMesh } from '../planets/mars';
+import { jupiterMesh } from '../planets/jupiter';
+import { saturnMesh, saturnRingsMesh } from '../planets/saturn';
+import { uranusMesh } from '../planets/uranus';
+import { neptuneMesh } from '../planets/neptune';
+import { PlanetNames } from './card';
 
 export const START_CAMERA_POSITION_Z = 20;
+
+export interface SolarSystemObjects {
+  solarShine: THREE.Mesh;
+  solar: THREE.Mesh;
+  mercury: THREE.Mesh;
+  venus: THREE.Mesh;
+  earth: THREE.Mesh;
+  mars: THREE.Mesh;
+  jupiter: THREE.Mesh;
+  saturn: THREE.Mesh;
+  saturnRing: THREE.Mesh;
+  uranus: THREE.Mesh;
+  neptune: THREE.Mesh;
+}
+
+export const initSolarSystem = (scene: THREE.Scene): SolarSystemObjects => {
+  return {
+    solarShine: addPlanetToScene(scene, solarShineMesh(), PlanetNames.solar),
+    solar: addPlanetToScene(scene, solarMesh(solarUniforms), PlanetNames.solar),
+    mercury: addPlanetToScene(scene, mercuryMesh(), PlanetNames.mercury),
+    venus: addPlanetToScene(scene, venusMesh(), PlanetNames.venus),
+    earth: addPlanetToScene(scene, earthMesh(), PlanetNames.earth),
+    mars: addPlanetToScene(scene, marsMesh(), PlanetNames.mars),
+    jupiter: addPlanetToScene(scene, jupiterMesh(), PlanetNames.jupiter),
+    saturn: addPlanetToScene(scene, saturnMesh(), PlanetNames.saturn),
+    saturnRing: addPlanetToScene(scene, saturnRingsMesh(), PlanetNames.saturn),
+    uranus: addPlanetToScene(scene, uranusMesh(), PlanetNames.uranus),
+    neptune: addPlanetToScene(scene, neptuneMesh(), PlanetNames.neptune),
+  }
+}
 
 export const createScene = (): THREE.Scene => {
   const scene = new THREE.Scene();

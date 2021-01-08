@@ -5,7 +5,7 @@ import { orbitalRotation, PlanetMovingConfig } from '../utils/math';
 
 const MARS_SIZE = 3378 * 30; // scale instead of real x30
 export const MARS_START_POSITION = {
-  X: 5.0,
+  X: 4.5,
   Y: 0,
   Z: 0,
 };

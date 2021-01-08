@@ -5,7 +5,7 @@ import { orbitalRotation, PlanetMovingConfig } from '../utils/math';
 
 const URANUS_SIZE = 25559 * 5; // scale instead of real x5
 export const URANUS_START_POSITION = {
-  X: 13,
+  X: 11,
   Y: 0,
   Z: 0,
 };

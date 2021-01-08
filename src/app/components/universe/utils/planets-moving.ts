@@ -1,4 +1,4 @@
-import { earth, jupiter, mars, mercury, neptune, saturn, saturnRing, solar, solarShine, uranus, venus } from '..';
+import { solarSystem } from '..';
 import { earthConfig } from '../planets/earth';
 import { jupiterConfig } from '../planets/jupiter';
 import { marsConfig } from '../planets/mars';
@@ -11,50 +11,50 @@ import { venusConfig } from '../planets/venus';
 import { planetRotationAndMoving } from './math';
 
 export const planetMoving = () => {
-  solar.rotation.z = solarRotation(solar);
-  solarShine.rotation.z = solarRotation(solarShine);
+  solarSystem.solar.rotation.z = solarRotation(solarSystem.solar);
+  solarSystem.solarShine.rotation.z = solarRotation(solarSystem.solarShine);
   //
-  const mercuryDislocationChange = planetRotationAndMoving(mercury, mercuryConfig);
-  mercury.position.x = mercuryDislocationChange.position.x;
-  mercury.position.y = mercuryDislocationChange.position.y;
-  mercury.rotation.z = mercuryDislocationChange.rotation.z;
+  const mercuryDislocationChange = planetRotationAndMoving(solarSystem.mercury, mercuryConfig);
+  solarSystem.mercury.position.x = mercuryDislocationChange.position.x;
+  solarSystem.mercury.position.y = mercuryDislocationChange.position.y;
+  solarSystem.mercury.rotation.z = mercuryDislocationChange.rotation.z;
   //
-  const venusDislocationChange = planetRotationAndMoving(venus, venusConfig);
-  venus.position.x = venusDislocationChange.position.x;
-  venus.position.y = venusDislocationChange.position.y;
-  venus.rotation.z = venusDislocationChange.rotation.z;
+  const venusDislocationChange = planetRotationAndMoving(solarSystem.venus, venusConfig);
+  solarSystem.venus.position.x = venusDislocationChange.position.x;
+  solarSystem.venus.position.y = venusDislocationChange.position.y;
+  solarSystem.venus.rotation.z = venusDislocationChange.rotation.z;
   //
-  const earthDislocationChange = planetRotationAndMoving(earth, earthConfig);
-  earth.position.x = earthDislocationChange.position.x;
-  earth.position.y = earthDislocationChange.position.y;
-  earth.rotation.z = earthDislocationChange.rotation.z;
+  const earthDislocationChange = planetRotationAndMoving(solarSystem.earth, earthConfig);
+  solarSystem.earth.position.x = earthDislocationChange.position.x;
+  solarSystem.earth.position.y = earthDislocationChange.position.y;
+  solarSystem.earth.rotation.z = earthDislocationChange.rotation.z;
   //
-  const marsDislocationChange = planetRotationAndMoving(mars, marsConfig);
-  mars.position.x = marsDislocationChange.position.x;
-  mars.position.y = marsDislocationChange.position.y;
-  mars.rotation.z = marsDislocationChange.rotation.z;
+  const marsDislocationChange = planetRotationAndMoving(solarSystem.mars, marsConfig);
+  solarSystem.mars.position.x = marsDislocationChange.position.x;
+  solarSystem.mars.position.y = marsDislocationChange.position.y;
+  solarSystem.mars.rotation.z = marsDislocationChange.rotation.z;
   //
-  const jupiterDislocationChange = planetRotationAndMoving(jupiter, jupiterConfig);
-  jupiter.position.x = jupiterDislocationChange.position.x;
-  jupiter.position.y = jupiterDislocationChange.position.y;
-  jupiter.rotation.z = jupiterDislocationChange.rotation.z;
+  const jupiterDislocationChange = planetRotationAndMoving(solarSystem.jupiter, jupiterConfig);
+  solarSystem.jupiter.position.x = jupiterDislocationChange.position.x;
+  solarSystem.jupiter.position.y = jupiterDislocationChange.position.y;
+  solarSystem.jupiter.rotation.z = jupiterDislocationChange.rotation.z;
   //
-  const saturnDislocationChange = planetRotationAndMoving(saturn, saturnConfig);
-  saturn.position.x = saturnDislocationChange.position.x;
-  saturn.position.y = saturnDislocationChange.position.y;
-  saturn.rotation.z = saturnDislocationChange.rotation.z;
-  const saturnRingDislocationChange = planetRotationAndMoving(saturnRing, saturnConfig);
-  saturnRing.position.x = saturnRingDislocationChange.position.x;
-  saturnRing.position.y = saturnRingDislocationChange.position.y;
-  saturnRing.rotation.z = saturnRingDislocationChange.rotation.z;
+  const saturnDislocationChange = planetRotationAndMoving(solarSystem.saturn, saturnConfig);
+  solarSystem.saturn.position.x = saturnDislocationChange.position.x;
+  solarSystem.saturn.position.y = saturnDislocationChange.position.y;
+  solarSystem.saturn.rotation.z = saturnDislocationChange.rotation.z;
+  const saturnRingDislocationChange = planetRotationAndMoving(solarSystem.saturnRing, saturnConfig);
+  solarSystem.saturnRing.position.x = saturnRingDislocationChange.position.x;
+  solarSystem.saturnRing.position.y = saturnRingDislocationChange.position.y;
+  solarSystem.saturnRing.rotation.z = saturnRingDislocationChange.rotation.z;
   //
-  const uranusDislocationChange = planetRotationAndMoving(uranus, uranusConfig);
-  uranus.position.x = uranusDislocationChange.position.x;
-  uranus.position.y = uranusDislocationChange.position.y;
-  uranus.rotation.z = uranusDislocationChange.rotation.z;
+  const uranusDislocationChange = planetRotationAndMoving(solarSystem.uranus, uranusConfig);
+  solarSystem.uranus.position.x = uranusDislocationChange.position.x;
+  solarSystem.uranus.position.y = uranusDislocationChange.position.y;
+  solarSystem.uranus.rotation.z = uranusDislocationChange.rotation.z;
   //
-  const neptuneDislocationChange = planetRotationAndMoving(neptune, neptuneConfig);
-  neptune.position.x = neptuneDislocationChange.position.x;
-  neptune.position.y = neptuneDislocationChange.position.y;
-  neptune.rotation.z = neptuneDislocationChange.rotation.z;
+  const neptuneDislocationChange = planetRotationAndMoving(solarSystem.neptune, neptuneConfig);
+  solarSystem.neptune.position.x = neptuneDislocationChange.position.x;
+  solarSystem.neptune.position.y = neptuneDislocationChange.position.y;
+  solarSystem.neptune.rotation.z = neptuneDislocationChange.rotation.z;
 }

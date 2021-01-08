@@ -5,7 +5,7 @@ import { orbitalRotation, PlanetMovingConfig } from '../utils/math';
 
 const NEPTUNE_SIZE = 24776 * 5; // scale instead of real x5
 export const NEPTUNE_START_POSITION = {
-  X: 15,
+  X: 12.5,
   Y: 0,
   Z: 0,
 };

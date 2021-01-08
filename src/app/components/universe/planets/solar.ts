@@ -74,6 +74,11 @@ const shaderMaterial = (uniforms: any): THREE.ShaderMaterial => {
   return material;
 }
 
+export const solarAnimationUpdate = (clock: THREE.Clock) => {
+  const delta = 5 * clock.getDelta();
+  solarUniforms.time.value += 0.5 * delta;
+}
+
 const vertexShader = `
   uniform vec2 uvScale;
   varying vec2 vUv;
@@ -113,4 +118,6 @@ const fragmentShader = `
   	gl_FragColor = mix( gl_FragColor, vec4( fogColor, gl_FragColor.w ), fogFactor );
   }
 `;
+
+export const solarUniforms = getUniforms();
 

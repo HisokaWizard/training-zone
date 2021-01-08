@@ -6,7 +6,7 @@ import { orbitalRotation, PlanetMovingConfig } from '../utils/math';
 
 const SATURN_SIZE = 60268 * 5; // scale instead of real x5
 export const SATURN_START_POSITION = {
-  X: 9.5,
+  X: 8.5,
   Y: 0,
   Z: 0,
 };
