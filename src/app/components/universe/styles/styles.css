@@ -1,0 +1,86 @@
+@font-face {
+	font-family: 'StarJedi';
+	src: url(../models/fonts/StarJedi-DGRW.woff);
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root {
+  --theme-color: #FFDE06;
+}
+
+body {
+  font-family: 'StarJedi';
+  letter-spacing: 3px;
+}
+
+.solarBtn, .reset-camera {
+  font-family: 'StarJedi';
+  background-color: rgba(0,0,0, 0.8);
+  border: 5px solid rgba(0,0,0, 0.9);
+  outline: 'none';
+  position: fixed;
+  height: 50px;
+  left: 10px;
+  color: var(--theme-color);
+  letter-spacing: 3px;
+  text-align: left;
+  padding: 0 5px;
+  width:fit-content;
+}
+
+.solarBtn {
+  top: 10px;
+}
+
+.reset-camera {
+  top: 70px;
+}
+
+.solarBtn:hover, .reset-camera:hover {
+  background-color: rgba(0,0,0, 0.9);
+  color: var(--theme-color);
+  cursor: pointer;
+}
+
+.solarBtn:focus, .solarBtn:active, .solarBtn:visited,
+.reset-camera:focus, .reset-camera:active, .reset-camera:visited {
+  outline: none;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 400px;
+  height: 700px;
+  top: 20px;
+  right: 20px;
+}
+
+.image-card {
+  display: block;
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+}
+
+.text-card {
+  font-family: 'StarJedi';
+  max-height: 460px;
+  overflow-y: auto;
+  padding: 10px;
+  color: var(--theme-color);
+  background-color: rgba(0,0,0, 0.8);
+  box-shadow: 0 0 3px 1px rgba(0,0,0, 0.9);
+}
+
+.close-btn-card {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+  cursor: pointer;
+}

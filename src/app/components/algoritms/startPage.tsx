@@ -28,6 +28,7 @@ export class StartPage extends React.Component<{}, {}> {
 						<Dropdown.Item><Link to='/apps/hard-ui-logic'>New app</Link></Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
+				<Link to='/universe'><Button>Go to the amazing world</Button></Link>
 			</div>
 		);
 	}

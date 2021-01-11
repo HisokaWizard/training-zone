@@ -46,7 +46,7 @@ module.exports = {
     mode: 'development',
     // entry point
     entry: {
-        general: ['./app.tsx'],
+        // general: ['./app.tsx'],
         planetSystem: ['./app/components/universe/index.ts'],
     },
     // directory and general file with application
@@ -55,7 +55,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
     },
     resolve: {
-        extensions: ['.js', '.json', '.png', '.css', '.ts', '.tsx', '.jsx'],
+        extensions: ['.js', '.json', '.png', '.css', '.ts', '.tsx', '.jsx', 'jpg', 'jpeg', 'png'],
         alias: {
             '@universe': path.resolve(__dirname, 'src/app/components/universe'),
             '@models': path.resolve(__dirname, 'src/app/components/universe/models'),
@@ -104,6 +104,10 @@ module.exports = {
             },
             {
                 test: /\.(ttf|woff|woff2|eot)?$/,
+                use: ['file-loader'],
+            },
+            {
+                test: /\.(mov|mpeg4|avi|mp4)?$/,
                 use: ['file-loader'],
             },
             {
