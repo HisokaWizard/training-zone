@@ -12,9 +12,11 @@ export const StartPage = () => {
 					<Dropdown.Item><Link to='/algorithms/binary-search'>Binary Search</Link></Dropdown.Item>
 				</Dropdown.Menu>
 			</Dropdown>
-			<Link style={{ margin: '10px' }} to='/redux-experiments'>
-				<Button variant='primary'>Redux experiments</Button>
-			</Link>
+			<div style={{ margin: '10px' }}>
+				<Link to='/redux-experiments'>
+					<Button variant='primary'>Redux experiments</Button>
+				</Link>
+			</div>
 		</div>
 	);
 }
