@@ -6,10 +6,11 @@
   "scripts": {
     "test": "mocha 'test/**/test.js'",
     "build": "cross-env NODE_ENV=production webpack",
+    "build_3d": "cross-env NODE_ENV=production OTHER_FLAG=solar_system webpack",
     "start": "cross-env NODE_ENV=development webpack-dev-server --open",
+    "start_3d": "cross-env NODE_ENV=development OTHER_FLAG=solar_system webpack-dev-server --open",
     "server": "node backend.js"
   },
-  "proxy": "http://localhost:7008",
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -45,8 +45,8 @@ const update = () => {
 
   btnForSolarSystem(stopper, backToSolar);
   zoomAndPosition(camera);
-  orbitalControl.target.set(0,0,0);
-  
+  orbitalControl.target.set(0, 0, 0);
+
   if (!sceneState.stopAction) {
     planetMoving();
   }
@@ -67,3 +67,4 @@ const gameLoop = () => {
 }
 
 gameLoop();
+

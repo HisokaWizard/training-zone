@@ -1,12 +1,6 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { StartPage } from './startPage';
-import { binarySearch } from './binary-search';
 
-interface State {
-}
-
-export class AllSort extends React.Component<{}, State> {
+export class AllSort extends React.Component<{}, {}> {
 
 	constructor(props: {}) {
 		super(props);

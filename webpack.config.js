@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 
+const isSolarSystem = process.env.OTHER_FLAG;
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
@@ -44,10 +45,9 @@ const styleLoaders = (regexp, loader) => {
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
-    // entry point
+    // entry points (maybe more than one)
     entry: {
-        // general: ['./app.tsx'],
-        planetSystem: ['./app/components/universe/index.ts'],
+        general: isSolarSystem ? ['./app/components/universe/index.ts'] : ['./app.tsx'],
     },
     // directory and general file with application
     output: {
