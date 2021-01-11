@@ -9,7 +9,8 @@
     "build_3d": "cross-env NODE_ENV=production OTHER_FLAG=solar_system webpack",
     "start": "cross-env NODE_ENV=development webpack-dev-server --open",
     "start_3d": "cross-env NODE_ENV=development OTHER_FLAG=solar_system webpack-dev-server --open",
-    "server": "node backend.js"
+    "js-constructor": "parcel ./src/app/components/js-constructor-vladilen-course/src/index.html -p 5000 --open",
+    "js-constructor-build": "parcel build ./src/app/components/js-constructor-vladilen-course/src/index.html"
   },
   "keywords": [],
   "author": "",
@@ -59,6 +60,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "papaparse": "^5.3.0",
     "sass-loader": "^10.1.0",
+    "parcel-bundler": "^1.12.4",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.0",
     "terser-webpack-plugin": "^5.0.3",
