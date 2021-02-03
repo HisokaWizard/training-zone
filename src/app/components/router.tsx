@@ -5,9 +5,7 @@ import { StartPage } from './startPage';
 import { BinarySearch } from './algoritms/binary-search';
 import { AllSort } from './algoritms/sort';
 import { GeneralRedux } from './redux-experiments/general';
-import { configureStore } from './redux-experiments/globalRedux/globalStore';
-
-const store = configureStore();
+import { store } from './redux-experiments/globalRedux/globalStore';
 
 export const RouterComponent = () => {
 	return (
