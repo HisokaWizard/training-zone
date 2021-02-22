@@ -17,6 +17,11 @@ export const StartPage = () => {
 					<Button variant='primary'>Redux experiments</Button>
 				</Link>
 			</div>
+			<div style={{ margin: '10px' }}>
+				<Link to='/colonialists'>
+					<Button variant='primary'>Colonialists</Button>
+				</Link>
+			</div>
 		</div>
 	);
 }
