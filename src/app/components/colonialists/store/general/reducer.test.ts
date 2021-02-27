@@ -1,7 +1,7 @@
-import { randomTwoCubesDropper } from './businessFunctions';
+import { retry } from 'redux-saga/effects';
+import { generateMapConfig, getRandomCubeValue, randomTwoCubesDropper } from './businessFunctions';
 
-
-describe('game state reducer', () => {
+describe('general business function', () => {
   it('check cube dropping', () => {
     const testingFunction = () => {
       const probabilityValues = {
@@ -46,5 +46,27 @@ describe('game state reducer', () => {
       return !isError && isOk;
     }
     return expect(testingFunction()).toEqual(true);
+  })
+
+  it('check random value', () => {
+    const testingFunction = () => {
+      for(let index = 0; index < 100000; index++) {
+        const randomCubeValue = getRandomCubeValue();
+        if (randomCubeValue < 1 || randomCubeValue > 6) {
+          return true;
+        }
+      }
+      return false;
+    }
+    return expect(testingFunction()).toEqual(false);
+  })
+
+  it('check map config sequence', () => {
+    const testingFunction = () => {
+      const result = generateMapConfig();
+      console.log(result.join(', '));
+      return result;
+    }
+    return expect(testingFunction().length).toEqual(19)
   })
 })

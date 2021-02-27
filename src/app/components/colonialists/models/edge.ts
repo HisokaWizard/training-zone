@@ -1,5 +1,6 @@
-import { NodeKeyPair } from './node';
+import { CardNodeKeyPair } from './node';
 
 export interface Edge {
-  nodeKeyPairs: NodeKeyPair[];
+  cardNodeKeyPairs: CardNodeKeyPair[];
+  cardIds: string[];
 }
