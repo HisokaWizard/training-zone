@@ -1,36 +1,46 @@
 import { cloneDeep } from 'lodash';
-import { Card } from '../../models/card';
-import { cardsLimit, CardTypes, GameMap } from '../../models/map';
+import { Card } from '@gameModels/card';
+import { cardsLimit, CardTypes, GameMap, MapValues, mapValuesLimit } from '@gameModels/map';
 
 export const mapGenerator = (): GameMap => {
   const gameMap: GameMap = {
     cards: [],
   }
   const generatorConfig: CardTypes[] = generateMapConfig();
-  for (let index = 0; index < generatorConfig.length; index++) {
-
-  }
+  const mapValues: MapValues[] = generateCardValues(generatorConfig);
+  let position = 1;
+  generatorConfig.forEach((item, index) => {
+    gameMap.cards.push(createCard(item, position, mapValues[index]));
+    position++;
+  })
   return gameMap;
 }
 
-export const createCard = (): Card => {
-  return;
+export const createCard = (configItem: CardTypes, position: number, value: number): Card => {
+  const card: Card = {
+    id: position,
+    edges: [],
+    nodes: [],
+    type: configItem,
+    value: value,
+  }
+  return card;
 }
 
 export const generateMapConfig = (): CardTypes[] => {
   const cardConfig: CardTypes[] = [];
   const cloneCardsLimit = cloneDeep(cardsLimit);
   while (true) {
-    const isReady = cloneCardsLimit[1] === 0
+    const isEmpty = cloneCardsLimit[1] === 0
     && cloneCardsLimit[2] === 0
     && cloneCardsLimit[3] === 0
     && cloneCardsLimit[4] === 0
     && cloneCardsLimit[5] === 0
     && cloneCardsLimit[6] === 0;
-    if (isReady) {
+    if (isEmpty) {
       break;
     }
-    const cardTypeId: CardTypes = getRandomCubeValue();
+    const cardTypeId: CardTypes = getRandomValue(6, 1);
     if (cloneCardsLimit[cardTypeId] !== 0) {
       cardConfig.push(cardTypeId);
       cloneCardsLimit[cardTypeId]--;
@@ -39,13 +49,45 @@ export const generateMapConfig = (): CardTypes[] => {
   return cardConfig;
 }
 
+export const generateCardValues = (config: CardTypes[]): MapValues[] => {
+  const banditIndex = config.indexOf(CardTypes.bandit);
+  const valueSequence: MapValues[] = [];
+  const cloneMapValues = cloneDeep(mapValuesLimit);
+  while (true) {
+    const isEmpty = cloneMapValues[2] === 0
+    && cloneMapValues[3] === 0
+    && cloneMapValues[4] === 0
+    && cloneMapValues[5] === 0
+    && cloneMapValues[6] === 0
+    && cloneMapValues[8] === 0
+    && cloneMapValues[9] === 0
+    && cloneMapValues[10] === 0
+    && cloneMapValues[11] === 0
+    && cloneMapValues[12] === 0
+    if (isEmpty) {
+      break;
+    }
+    if (valueSequence.length === banditIndex) {
+      valueSequence.push(MapValues.bandit);
+      continue;
+    }
+    const mapValue: MapValues = getRandomValue(12, 2);
+    if (cloneMapValues[mapValue] !== 0 && mapValue !== MapValues.bandit) {
+      valueSequence.push(mapValue);
+      cloneMapValues[mapValue]--;
+    }
+  }
+  return valueSequence;
+}
+
 export const randomTwoCubesDropper = () => {
-  const cubeFirst = getRandomCubeValue();
-  const cubeSecond = getRandomCubeValue();
+  const cubeFirst = getRandomValue(6, 1);
+  const cubeSecond = getRandomValue(6, 1);
   return cubeFirst + cubeSecond;
 }
 
-export const getRandomCubeValue = () => {
-  const value = Math.round((Math.random() * 6));
-  return value === 0 ? 1 : value;
+export const getRandomValue = (max: number, min: number) => {
+  const minInt = Math.ceil(min);
+  const maxInt = Math.floor(max);
+  return Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
 }

@@ -10,7 +10,14 @@
     "sourceMap": true,
     "target": "es6",
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*":["./src/app/components/*"],
+      "@game/*":["./src/app/components/colonialists/*"],
+      "@gameModels/*":["./src/app/components/colonialists/models/*"],
+      "@gameStore/*":["./src/app/components/colonialists/store/*"],
+    }
   },
   "include": [
     "./src/**/**/*"

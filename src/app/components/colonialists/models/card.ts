@@ -3,7 +3,7 @@ import { CardTypes } from './map';
 import { CardNode } from './node';
 
 export interface Card {
-  id: string;
+  id: number;
   edges: Edge[];
   nodes: CardNode[];
   value: number;

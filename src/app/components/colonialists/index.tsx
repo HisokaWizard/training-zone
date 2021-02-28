@@ -1,6 +1,7 @@
 import { Grid, Typography } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import React, { useEffect } from 'react';
+import { mapGenerator } from './store/general/businessFunctions';
 import { useGameState } from './store/general/hooks';
 import { dropCube } from './store/general/reducers';
 import { useAppDispatch } from './store/hooks';
@@ -14,6 +15,10 @@ export const ColonialistsGame = () => {
   const dropCubes = () => {
     dispatch(dropCube());
   }
+
+  useEffect(() => {
+    console.log(mapGenerator());
+  }, [])
 
   return <Grid container spacing={2}>
     <Grid item xs={12}>

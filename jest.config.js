@@ -1,5 +1,4 @@
 module.exports = {
-  verbose: true,
   rootDir: '.',
   roots: ['<rootDir>/src'],
   transform: {
@@ -10,4 +9,10 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['**/*.ts', '**/*.tsx', '!**/*.d.ts'],
   coverageDirectory: '<rootDir>/test-results',
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/app/components/$1",
+    '^@game/(.*)$': '<rootDir>/src/app/components/colonialists/$1',
+    '^@gameModels/(.*)$': '<rootDir>/src/app/components/colonialists/models/$1',
+    '^@gameStore/(.*)$': '<rootDir>/src/app/components/colonialists/store/$1',
+  },
 };

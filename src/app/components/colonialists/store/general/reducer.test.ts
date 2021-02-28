@@ -1,5 +1,4 @@
-import { retry } from 'redux-saga/effects';
-import { generateMapConfig, getRandomCubeValue, randomTwoCubesDropper } from './businessFunctions';
+import { generateCardValues, generateMapConfig, getRandomValue, randomTwoCubesDropper } from './businessFunctions';
 
 describe('general business function', () => {
   it('check cube dropping', () => {
@@ -51,7 +50,7 @@ describe('general business function', () => {
   it('check random value', () => {
     const testingFunction = () => {
       for(let index = 0; index < 100000; index++) {
-        const randomCubeValue = getRandomCubeValue();
+        const randomCubeValue = getRandomValue(6, 1);
         if (randomCubeValue < 1 || randomCubeValue > 6) {
           return true;
         }
@@ -64,6 +63,17 @@ describe('general business function', () => {
   it('check map config sequence', () => {
     const testingFunction = () => {
       const result = generateMapConfig();
+      console.log(result.join(', '));
+      return result;
+    }
+    return expect(testingFunction().length).toEqual(19)
+  })
+
+  it('check map values sequence', () => {
+    const testingFunction = () => {
+      const config = generateMapConfig();
+      console.log(config.join(', '));
+      const result = generateCardValues(config);
       console.log(result.join(', '));
       return result;
     }
