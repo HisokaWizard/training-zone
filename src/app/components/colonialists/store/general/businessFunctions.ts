@@ -1,6 +1,7 @@
 import { cloneDeep } from 'lodash';
-import { Card } from '@gameModels/card';
-import { cardsLimit, CardTypes, GameMap, MapValues, mapValuesLimit } from '@gameModels/map';
+import { cardsLimit, CardTypes } from '@gameModels/card';
+import { GameMap, MapValues, mapValuesLimit } from '@gameModels/map';
+import { baseGameMapConfig } from '@/colonialists/models/mapConfig/baseGameMapConfig';
 
 export const mapGenerator = (): GameMap => {
   const gameMap: GameMap = {
@@ -8,23 +9,11 @@ export const mapGenerator = (): GameMap => {
   }
   const generatorConfig: CardTypes[] = generateMapConfig();
   const mapValues: MapValues[] = generateCardValues(generatorConfig);
-  let position = 1;
   generatorConfig.forEach((item, index) => {
-    gameMap.cards.push(createCard(item, position, mapValues[index]));
-    position++;
+    baseGameMapConfig[index].type = item;
+    baseGameMapConfig[index].value = mapValues[index];
   })
   return gameMap;
-}
-
-export const createCard = (configItem: CardTypes, position: number, value: number): Card => {
-  const card: Card = {
-    id: position,
-    edges: [],
-    nodes: [],
-    type: configItem,
-    value: value,
-  }
-  return card;
 }
 
 export const generateMapConfig = (): CardTypes[] => {

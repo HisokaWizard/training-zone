@@ -1,6 +1,7 @@
-import { CardNodeKeyPair } from './node';
+import { MapPositions } from './card';
+import { CardNode } from './node';
 
 export interface Edge {
-  cardNodeKeyPairs: CardNodeKeyPair[];
-  cardIds: string[];
+  cardNodePair: CardNode[];
+  cardIds: MapPositions[];
 }

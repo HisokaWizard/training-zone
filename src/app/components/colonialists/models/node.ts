@@ -1,3 +1,4 @@
+import { MapPositions } from './card';
 import { Edge } from './edge';
 
 export enum SpecialEffects {
@@ -10,16 +11,19 @@ export enum SpecialEffects {
   none = 'none',
 }
 
-export interface CardNode {
-  edgeList: Edge[];
-  name: string;
-  key: string;
-  cardIds: string[];
-  busy: boolean;
-  specialEffect: SpecialEffects;
+export enum NodeNames {
+  top = 'top',
+  topRight = 'topRight',
+  bottomRight = 'bottomRight',
+  bottom = 'bottom',
+  bottomLeft = 'bottomLeft',
+  topLeft = 'topLeft',
 }
 
-export interface CardNodeKeyPair {
-  nodeKeyOne: string;
-  nodeKeyTwo: string;
+export interface CardNode {
+  edgeList: Edge[];
+  key: string;
+  cardIds: MapPositions[];
+  busy: boolean;
+  specialEffect: SpecialEffects;
 }
