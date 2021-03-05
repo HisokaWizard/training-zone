@@ -64,10 +64,19 @@ export enum CardNames {
   nineteenthCard = 'NineteenthCard',
 }
 
+export enum CardRows {
+  first = 1,
+  second = 2,
+  third = 3,
+  fourth = 4,
+  fifth = 5,
+}
+
 export interface Card {
   id: MapPositions;
+  row: CardRows;
   edges: Edge[];
   nodes: CardNode[];
   value: MapValues | 0;
-  type: CardTypes | undefined;
+  type: CardTypes;
 }

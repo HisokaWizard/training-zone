@@ -7,12 +7,14 @@ export const mapGenerator = (): GameMap => {
   const gameMap: GameMap = {
     cards: [],
   }
+  const cloneBaseConfig = cloneDeep(baseGameMapConfig);
   const generatorConfig: CardTypes[] = generateMapConfig();
   const mapValues: MapValues[] = generateCardValues(generatorConfig);
   generatorConfig.forEach((item, index) => {
-    baseGameMapConfig[index].type = item;
-    baseGameMapConfig[index].value = mapValues[index];
+    cloneBaseConfig[index].type = item;
+    cloneBaseConfig[index].value = mapValues[index];
   })
+  gameMap.cards = cloneBaseConfig
   return gameMap;
 }
 

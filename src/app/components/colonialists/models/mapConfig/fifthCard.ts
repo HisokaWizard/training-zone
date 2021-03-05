@@ -1,30 +1,30 @@
-import { Card, CardNames, MapPositions } from '../card'
+import { Card, CardNames, CardRows, MapPositions } from '../card'
 import { Edge } from '../edge'
 import { CardNode, NodeNames, SpecialEffects } from '../node'
 
 const edgeFirstCardFifth: Edge = {
   cardIds: [MapPositions.fifth],
-  cardNodePair: [],
+  cardNodeKeyPair: [],
 }
 const edgeSecondCardFifth: Edge = {
   cardIds: [MapPositions.fifth],
-  cardNodePair: [],
+  cardNodeKeyPair: [],
 }
 const edgeThirdCardFifth: Edge = {
   cardIds: [MapPositions.fifth],
-  cardNodePair: [],
+  cardNodeKeyPair: [],
 }
 const edgeFourthCardFifth: Edge = {
   cardIds: [MapPositions.fifth, MapPositions.sixth],
-  cardNodePair: [],
+  cardNodeKeyPair: [],
 }
 const edgeFifthCardFifth: Edge = {
   cardIds: [MapPositions.fifth, MapPositions.fifteenth],
-  cardNodePair: [],
+  cardNodeKeyPair: [],
 }
 const edgeSixthCardFifth: Edge = {
   cardIds: [MapPositions.fifth, MapPositions.fourth],
-  cardNodePair: [],
+  cardNodeKeyPair: [],
 }
 
 const fifthCardNodeKey = (nodeName: NodeNames) => `${CardNames.fifthCard}_${nodeName}_${MapPositions.fifth}`
@@ -77,15 +77,16 @@ const nodeSixthCardFifth: CardNode = {
   edgeList: [edgeFourthCardFifth, edgeFifthCardFifth]
 }
 
-edgeFirstCardFifth.cardNodePair = [nodeFirstCardFifth, nodeSecondCardFifth];
-edgeSecondCardFifth.cardNodePair = [nodeSecondCardFifth, nodeThirdCardFifth];
-edgeThirdCardFifth.cardNodePair = [nodeThirdCardFifth, nodeFourthCardFifth];
-edgeFourthCardFifth.cardNodePair = [nodeFourthCardFifth, nodeFifthCardFifth];
-edgeFifthCardFifth.cardNodePair = [nodeFifthCardFifth, nodeSixthCardFifth];
-edgeSixthCardFifth.cardNodePair = [nodeSixthCardFifth, nodeFirstCardFifth];
+edgeFirstCardFifth.cardNodeKeyPair = [nodeFirstCardFifth.key, nodeSecondCardFifth.key];
+edgeSecondCardFifth.cardNodeKeyPair = [nodeSecondCardFifth.key, nodeThirdCardFifth.key];
+edgeThirdCardFifth.cardNodeKeyPair = [nodeThirdCardFifth.key, nodeFourthCardFifth.key];
+edgeFourthCardFifth.cardNodeKeyPair = [nodeFourthCardFifth.key, nodeFifthCardFifth.key];
+edgeFifthCardFifth.cardNodeKeyPair = [nodeFifthCardFifth.key, nodeSixthCardFifth.key];
+edgeSixthCardFifth.cardNodeKeyPair = [nodeSixthCardFifth.key, nodeFirstCardFifth.key];
 
 export const fifthCard: Card = {
   id: MapPositions.fifth,
+  row: CardRows.third,
   edges: [
     edgeFirstCardFifth,
     edgeSecondCardFifth,

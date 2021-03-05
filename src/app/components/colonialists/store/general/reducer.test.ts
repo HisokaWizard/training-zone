@@ -1,4 +1,4 @@
-import { generateCardValues, generateMapConfig, getRandomValue, randomTwoCubesDropper } from './businessFunctions';
+import { generateCardValues, generateMapConfig, getRandomValue, mapGenerator, randomTwoCubesDropper } from './businessFunctions';
 
 describe('general business function', () => {
   it('check cube dropping', () => {
@@ -78,5 +78,9 @@ describe('general business function', () => {
       return result;
     }
     return expect(testingFunction().length).toEqual(19)
+  })
+
+  it('check new map generator', () => {
+    return expect(mapGenerator().cards.length).toEqual(19)
   })
 })

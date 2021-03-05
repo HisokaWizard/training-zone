@@ -2,6 +2,6 @@ import { MapPositions } from './card';
 import { CardNode } from './node';
 
 export interface Edge {
-  cardNodePair: CardNode[];
+  cardNodeKeyPair: string[];
   cardIds: MapPositions[];
 }
