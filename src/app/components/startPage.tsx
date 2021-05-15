@@ -22,6 +22,11 @@ export const StartPage = () => {
 					<Button variant='primary'>Colonialists</Button>
 				</Link>
 			</div>
+			<div style={{ margin: '10px' }}>
+				<Link to='/filter-experiments'>
+					<Button variant='primary'>Filter experiments</Button>
+				</Link>
+			</div>
 		</div>
 	);
 }

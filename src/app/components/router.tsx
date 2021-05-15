@@ -5,9 +5,9 @@ import { StartPage } from './startPage';
 import { BinarySearch } from './algoritms/binary-search';
 import { AllSort } from './algoritms/sort';
 import { GeneralRedux } from './redux-experiments/general';
-import { store } from './redux-experiments/globalRedux/globalStore';
-import { ColonialistsGame } from './colonialists';
-import { colonialistsStore } from './colonialists/store/store';
+import {FilterExperiments} from "@/filter-experiments";
+import {store} from "@/redux/store";
+import {ColonialistsGame} from "@/colonialists";
 
 export const RouterComponent = () => {
 	return (
@@ -18,8 +18,11 @@ export const RouterComponent = () => {
 			<Provider store={store}>
 				<Route path={'/redux-experiments'} component={GeneralRedux} />
 			</Provider>
-			<Provider store={colonialistsStore}>
+			<Provider store={store}>
 				<Route path={'/colonialists'} component={ColonialistsGame} />
+			</Provider>
+			<Provider store={store}>
+			<Route path={'/filter-experiments'} component={FilterExperiments} />
 			</Provider>
 		</Router>
 	);

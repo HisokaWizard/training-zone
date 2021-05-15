@@ -1,11 +1,11 @@
 import { Grid, Typography } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import React from 'react';
-import { CardRows, CardTypes } from './models/card';
-import { mapGenerator } from './store/general/businessFunctions';
-import { useGameState } from './store/general/hooks';
-import { dropCube, generateMap } from './store/general/reducers';
-import { useAppDispatch } from './store/hooks';
+import {Card, CardRows, CardTypes} from './models/card';
+import {useAppDispatch} from "@/redux/hooks";
+import {useGameState} from "@/redux/colonialists/hooks";
+import {mapGenerator} from "@/redux/colonialists/businessFunctions";
+import { generateMap, dropCube } from '@/redux/colonialists/reducers';
 
 export const ColonialistsGame = () => {
   const dispatch = useAppDispatch();
@@ -40,7 +40,7 @@ export const ColonialistsGame = () => {
   const renderOneRow = (row: CardRows) => {
     return <Grid item xs={12}>
       <Grid container spacing={2} justify='center'>
-        {gameMap?.cards?.map(card => (
+        {gameMap?.cards?.map((card: Card) => (
           row === card.row &&
           <Grid item xs='auto' key={card.id}>
             <Button style={{ borderRadius: '100%', backgroundColor: getBackgroundColor(card.type), padding: '20px' }} >

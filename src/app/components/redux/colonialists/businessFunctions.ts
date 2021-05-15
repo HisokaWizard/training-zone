@@ -1,7 +1,7 @@
 import { cloneDeep } from 'lodash';
 import { cardsLimit, CardTypes } from '@gameModels/card';
 import { GameMap, MapValues, mapValuesLimit } from '@gameModels/map';
-import { baseGameMapConfig } from '@/colonialists/models/mapConfig/baseGameMapConfig';
+import { baseGameMapConfig } from '@gameModels/mapConfig/baseGameMapConfig';
 
 export const mapGenerator = (): GameMap => {
   const gameMap: GameMap = {

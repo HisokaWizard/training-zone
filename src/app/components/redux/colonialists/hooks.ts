@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '@gameStore/rootReducer';
+import {RootState} from "@/redux/rootReducer";
 
 const gameState = (state: RootState) => state.general;
 

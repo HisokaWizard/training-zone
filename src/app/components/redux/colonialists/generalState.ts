@@ -1,4 +1,4 @@
-import { GameMap } from '@/colonialists/models/map';
+import { GameMap } from '@gameModels/map';
 
 export interface GameState {
   dropCubeResult: number;

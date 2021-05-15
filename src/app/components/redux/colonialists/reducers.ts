@@ -1,4 +1,4 @@
-import { GameMap } from '@/colonialists/models/map';
+import { GameMap } from '@gameModels/map';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { randomTwoCubesDropper } from './businessFunctions';
 import { initialGameState } from './generalState'
