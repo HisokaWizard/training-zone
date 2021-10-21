@@ -57,8 +57,13 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.json', '.css', '.ts', '.tsx', '.jsx'],
         alias: {
+            '@': path.resolve(__dirname, 'src/app/components'),
+            // 3d app
             '@universe': path.resolve(__dirname, 'src/app/components/universe'),
             '@models': path.resolve(__dirname, 'src/app/components/universe/models'),
+            // colonialists
+            '@gameModels': path.resolve(__dirname, 'src/app/components/colonialists/models'),
+            '@gameStore': path.resolve(__dirname, 'src/app/components/colonialists/store'),
         }
     },
     // optimization of the build, with vendor, where we have libraries.
@@ -125,6 +130,5 @@ module.exports = {
                 exclude: /node_modules/,
             },
         ]
-    }
-
+    },
 }
