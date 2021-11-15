@@ -1,6 +1,6 @@
 import { Grid, Typography } from '@material-ui/core';
 import { Button } from '@material-ui/core';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Card, CardRows, CardTypes} from './models/card';
 import {useAppDispatch} from "@/redux/hooks";
 import {useGameState} from "@/redux/colonialists/hooks";
@@ -62,9 +62,18 @@ export const ColonialistsGame = () => {
     </Grid>
   }
 
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    setCount(prevCount => prevCount + 1);
+    setCount(prevCount => prevCount + 1);
+    setCount(prevCount => prevCount + 1);
+  }, [])
+
   return <Grid container spacing={2}>
     <Grid item xs={12}>
       <Typography component='h4' variant='h4'>Colonialists Game</Typography>
+      <div>Count: {count}</div>
     </Grid>
     <Grid item xs={6}>
       <Button color='primary' variant='outlined' onClick={dropCubes}>Drop cubes and get result</Button>

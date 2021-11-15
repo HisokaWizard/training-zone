@@ -1,0 +1,16 @@
+//
+docker build - build docker image
+
+-t - set image name (name:tag)
+
+docker build path - docker build -t image1:exp . (. - root directory)
+
+//
+docker run - start docker container to work
+
+-d - start container in background
+-p - set port local/container 7000:3001
+--name - set container name
+--rm remove container after close
+
+docker run -d -p 7007:3000 --name test12345 --rm hisokawizard/test-app

@@ -10,6 +10,8 @@ import {store} from "@/redux/store";
 import {ColonialistsGame} from "@/colonialists";
 
 export const RouterComponent = () => {
+	console.log('DOCKER TEST');
+	
 	return (
 		<Router>
 			<Route exact path={'/'} component={StartPage} />
