@@ -1,0 +1,8 @@
+{
+  "editor.fontSize": 14,
+  "editor.tabSize": 2,
+  "files.autoSave": "onFocusChange",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "github-enterprise.uri": "vscode://vscode.github-authentication/did-authenticate?windowid=1&code=fa9934aa946820253509&state=66eef018-6565-4b28-a156-911f9ab5d24a"
+}
