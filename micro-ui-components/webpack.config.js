@@ -14,7 +14,7 @@ module.exports = {
     devServer: {
         port: 3010,
     },
-    devtool: 'cheap-module-source-map',
+    devtool: 'inline-source-map',
     module: {
         rules: [
             {
@@ -44,6 +44,7 @@ module.exports = {
                 exposes: {
                     './TextPanel': './src/components/TextPanel/TextPanel',
                     './TextPanelWithBackGround': './src/components/TextPanelWithBackGround/TextPanelWithBackGround',
+                    './MFApp': './src/App',
                 },
                 shared: {
                     react: {
