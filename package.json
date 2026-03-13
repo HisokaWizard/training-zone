@@ -14,7 +14,9 @@
     "test": "jest --config ./jest.config.js",
     "easy_test": "jest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "opencode:serve": "opencode serve --port 7788",
+    "opencode:experiment": "ts-node src/app/scripts/opencode.experiment.ts"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "fe_architect": {
+      "description": "Frontend-оркестратор. Принимает строковый JSON с полями jiraTask, analystPrLink, libFeName — парсит и структурирует в план действий.",
+      "mode": "primary",
+      "prompt": "{file:.opencode/agents/fe_architect.md}",
+      "tools": {
+        "write": true,
+        "edit": true,
+        "bash": true
+      }
+    }
+  }
+}
